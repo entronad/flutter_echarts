@@ -1,6 +1,6 @@
 name: flutter_echarts
 description: Flutter wrapper for echarts.
-version: 0.0.1
+version: 0.0.2
 author: LIN Chen <entronad@gmail.com>
 homepage: https://github.com/entronad/flutter_echarts
 
