@@ -1,13 +1,7 @@
-import 'dart:async';
+library flutter_echarts;
 
-import 'package:flutter/services.dart';
-
-class FlutterEcharts {
-  static const MethodChannel _channel =
-      const MethodChannel('flutter_echarts');
-
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version + 'a';
-  }
+/// A Calculator.
+class Calculator {
+  /// Returns [value] plus 1.
+  int addOne(int value) => value + 1;
 }

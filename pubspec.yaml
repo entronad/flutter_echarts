@@ -1,11 +1,11 @@
 name: flutter_echarts
 description: Flutter wrapper for echarts.
-version: 0.0.2
+version: 1.0.0
 author: LIN Chen <entronad@gmail.com>
 homepage: https://github.com/entronad/flutter_echarts
 
 environment:
-  sdk: '>=1.19.0 <2.0.0'
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -16,26 +16,23 @@ dev_dependencies:
     sdk: flutter
 
 # For information on the generic Dart part of this file, see the
-# following page: https://www.dartlang.org/tools/pub/pubspec
+# following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-  plugin:
-    androidPackage: com.entronad.flutterecharts
-    pluginClass: FlutterEchartsPlugin
 
-  # To add assets to your plugin package, add an assets section, like this:
+  # To add assets to your package, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see
-  # https://flutter.io/assets-and-images/#from-packages
+  # https://flutter.dev/assets-and-images/#from-packages
   #
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.io/assets-and-images/#resolution-aware.
+  # https://flutter.dev/assets-and-images/#resolution-aware.
 
-  # To add custom fonts to your plugin package, add a fonts section here,
+  # To add custom fonts to your package, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
@@ -53,4 +50,4 @@ flutter:
   #         weight: 700
   #
   # For details regarding fonts in packages, see
-  # https://flutter.io/custom-fonts/#from-packages
+  # https://flutter.dev/custom-fonts/#from-packages
