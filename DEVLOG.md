@@ -18,14 +18,18 @@ onMessage
 
 消息处理函数
 
-renderer
+~~renderer~~
 
-Renderer.canvas（默认） | Renderer.svg
+~~Renderer.canvas（默认） | Renderer.svg~~ （强制使用canvas，效果更好）
 
-echartsSrc
+~~echartsSrc~~
 
-文件地址，默认会有一个最新版的，定期更新
+~~文件地址，默认会有一个最新版的，定期更新~~   (为保证性能？echarts先统一embed在html中)
 
-pluginSrcs
+plugins
 
-数组，插件文件地址
+资源数组，插件文件地址，包括gl
+
+
+
+出于性能考虑，初始加载不用await rootBundle.loadString('assets/help.html');加载html文件，而是直接以字符串注入
