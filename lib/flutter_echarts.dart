@@ -5,7 +5,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import './echarts_script.dart' show echartsScript;
 
-String _getHtml(List<String> scripts) => '''
+String _getHtml(List<String> scripts, String exScript) => '''
 data:text/html;UTF-8,
 <!DOCTYPE html>
 <html>
@@ -22,11 +22,9 @@ data:text/html;UTF-8,
     }
   </style>
   <script>
-    ${scripts.reduce((value, element) => value + element)}
+    ${scripts.reduce((value, element) => value + '\n' + element)}
     const chart = echarts.init(document.getElementById('chart'), null);
-    document.addEventListener('message', (e) => {
-      chart.setOption(parse(e.data), true);
-    });
+    $exScript
   </script>
 </head>
 <body>
@@ -35,11 +33,13 @@ data:text/html;UTF-8,
 </html>
 ''';
 
+typedef OnMessage = void Function(String);
+
 class Echarts extends StatefulWidget {
   Echarts({
     Key key,
     this.option,
-    this.exScript,
+    this.exScript = '',
     this.onMessage,
   }) : super(key: key);
 
@@ -47,18 +47,47 @@ class Echarts extends StatefulWidget {
 
   final String exScript;
 
-  final Function onMessage;
+  final OnMessage onMessage;
 
   @override
   _EchartsState createState() => _EchartsState();
 }
 
 class _EchartsState extends State<Echarts> {
+  WebViewController _controller;
+
+  void update(String preOption) {
+    if (widget.option != preOption) {
+      _controller?.evaluateJavascript('''
+        chart.setOption(${widget.option}, true);
+      ''');
+    }
+  }
+
+  @override
+  void didUpdateWidget(Echarts oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    update(oldWidget.option);
+  }
+
   @override
   Widget build(BuildContext context) {
+    debugPrint(_getHtml([echartsScript], widget.exScript));
     return WebView(
-      initialUrl: _getHtml([echartsScript]),
+      initialUrl: _getHtml([echartsScript], widget.exScript),
       javascriptMode: JavascriptMode.unrestricted,
+      onWebViewCreated: (WebViewController webViewController) {
+        _controller = webViewController;
+        update(null);
+      },
+      javascriptChannels: <JavascriptChannel>[
+        JavascriptChannel(
+          name: 'Messager',
+          onMessageReceived: (JavascriptMessage javascriptMessage) {
+            widget?.onMessage(javascriptMessage.message);
+          }
+        ),
+      ].toSet(),
     );
   }
 }

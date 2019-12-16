@@ -12,11 +12,11 @@ option
 
 exScript
 
-字符串，额外的脚本
+字符串，额外的脚本, 其中向外发送消息的对象叫“Messager”
 
 onMessage
 
-消息处理函数
+消息处理函数，echarts会发送哪些消息需在exScript中定义，并通过Messager.postMessage发送
 
 ~~renderer~~
 
@@ -29,6 +29,8 @@ onMessage
 plugins
 
 资源数组，插件文件地址，包括gl
+
+提醒目前ios要改配置
 
 
 
