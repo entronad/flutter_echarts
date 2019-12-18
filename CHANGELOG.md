@@ -1,3 +1,5 @@
-## 0.0.1
+## 0.1.0
 
-* Init this package.
+**2019-12-18**
+
+* initial beta version.

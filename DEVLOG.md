@@ -35,3 +35,31 @@ plugins
 
 
 出于性能考虑，初始加载不用await rootBundle.loadString('assets/help.html');加载html文件，而是直接以字符串注入
+
+采用uri注入的时候，注意#等特殊符号起到特殊的操作作用，故用base64编码
+
+
+
+html初始包括以下内容：
+
+html模板
+
+echarts脚本
+
+plugin脚本们
+
+echarts的基础逻辑
+
+exScript
+
+既要考虑灵活性，也要考虑性能（转换尽量放在编译期）
+
+先全部放在运行期看看效果（目前测试pc端echarts脚本全部转换仅需3ms），不过不能每次都算，仅在构造方法中转换一次
+
+~~url不能过长，所以仅放html，把所有js包括脚本，放到evaluateJavaScript中~~
+
+注意脚本要放body最后
+
+
+
+外面的数据请求，和echarts脚本的加载不知道谁先完成，用\_EchartsState.\_currentOption记录最后一次option，以防数据请求在脚本加载之前完成不触发更新，同时update的脚本内加上chart && 防止脚本没加载完没有chart

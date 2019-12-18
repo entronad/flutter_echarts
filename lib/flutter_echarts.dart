@@ -1,12 +1,13 @@
 library flutter_echarts;
 
+import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import './echarts_script.dart' show echartsScript;
 
 String _getHtml(List<String> scripts, String exScript) => '''
-data:text/html;UTF-8,
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +22,14 @@ data:text/html;UTF-8,
       -webkit-tap-highlight-color:rgba(255,255,255,0);
     }
   </style>
+</head>
+<body>
+  <div id="chart" />
   <script>
     ${scripts.reduce((value, element) => value + '\n' + element)}
     const chart = echarts.init(document.getElementById('chart'), null);
     $exScript
   </script>
-</head>
-<body>
-  <div id="chart" />
 </body>
 </html>
 ''';
@@ -56,10 +57,28 @@ class Echarts extends StatefulWidget {
 class _EchartsState extends State<Echarts> {
   WebViewController _controller;
 
-  void update(String preOption) {
-    if (widget.option != preOption) {
-      _controller?.evaluateJavascript('''
-        chart.setOption(${widget.option}, true);
+  String _htmlBase64;
+
+  String _currentOption;
+
+  @override
+  void initState() {
+    super.initState();
+    _htmlBase64 = 'data:text/html;base64,' + base64Encode(const Utf8Encoder().convert(_getHtml([echartsScript], widget.exScript)));
+    _currentOption = widget.option;
+  }
+
+  void init() async {
+    await _controller?.evaluateJavascript('''
+      chart.setOption($_currentOption, true);
+    ''');
+  }
+
+  void update(String preOption) async {
+    _currentOption = widget.option;
+    if (_currentOption != preOption) {
+      await _controller?.evaluateJavascript('''
+        chart && chart.setOption($_currentOption, true);
       ''');
     }
   }
@@ -72,13 +91,14 @@ class _EchartsState extends State<Echarts> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(_getHtml([echartsScript], widget.exScript));
     return WebView(
-      initialUrl: _getHtml([echartsScript], widget.exScript),
+      initialUrl: _htmlBase64,
       javascriptMode: JavascriptMode.unrestricted,
       onWebViewCreated: (WebViewController webViewController) {
         _controller = webViewController;
-        update(null);
+      },
+      onPageFinished: (String url) {
+        init();
       },
       javascriptChannels: <JavascriptChannel>[
         JavascriptChannel(
