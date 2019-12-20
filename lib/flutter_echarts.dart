@@ -7,32 +7,45 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import './echarts_script.dart' show echartsScript;
 
-String _getHtml(List<String> scripts, String exScript) => '''
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-	<style type="text/css">
-    body,html,#chart{
-      height: 100%;
-      width: 100%;
-      margin: 0px;
-    }
-    div {
-      -webkit-tap-highlight-color:rgba(255,255,255,0);
-    }
-  </style>
-</head>
-<body>
-  <div id="chart" />
-  <script>
-    ${scripts.reduce((value, element) => value + '\n' + element)}
-    const chart = echarts.init(document.getElementById('chart'), null);
-    $exScript
-  </script>
-</body>
-</html>
-''';
+String _getHtml(
+  String echartsScript,
+  List<String> extensions,
+  String extraScript,
+) {
+  final extensionsStr = extensions.length > 0
+    ? extensions.reduce(
+        (value, element) => (value ?? '') + '\n' + (element ?? '')
+      )
+    : '';
+  
+  return '''
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+          body,html,#chart{
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+          }
+          div {
+            -webkit-tap-highlight-color:rgba(255,255,255,0);
+          }
+        </style>
+      </head>
+      <body>
+        <div id="chart" />
+        <script>
+          $echartsScript
+          $extensionsStr
+          const chart = echarts.init(document.getElementById('chart'), null);
+          $extraScript
+        </script>
+      </body>
+    </html>
+  ''';
+}
 
 typedef OnMessage = void Function(String);
 
@@ -40,15 +53,18 @@ class Echarts extends StatefulWidget {
   Echarts({
     Key key,
     this.option,
-    this.exScript = '',
+    this.extraScript,
     this.onMessage,
+    this.extensions,
   }) : super(key: key);
 
   final String option;
 
-  final String exScript;
+  final String extraScript;
 
   final OnMessage onMessage;
+
+  final List<String> extensions;
 
   @override
   _EchartsState createState() => _EchartsState();
@@ -64,7 +80,13 @@ class _EchartsState extends State<Echarts> {
   @override
   void initState() {
     super.initState();
-    _htmlBase64 = 'data:text/html;base64,' + base64Encode(const Utf8Encoder().convert(_getHtml([echartsScript], widget.exScript)));
+    _htmlBase64 = 'data:text/html;base64,' + base64Encode(
+      const Utf8Encoder().convert(_getHtml(
+        echartsScript,
+        widget.extensions ?? [],
+        widget.extraScript ?? '',
+      ))
+    );
     _currentOption = widget.option;
   }
 

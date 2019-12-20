@@ -2,4 +2,10 @@
 
 **2019-12-18**
 
-* initial beta version.
+* Initial beta version.
+
+## 1.0.0
+
+**2019-12-20**
+
+* First formal version.

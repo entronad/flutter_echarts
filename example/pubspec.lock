@@ -47,7 +47,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.1.0"
+    version: "1.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -67,6 +67,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.7"
+  number_display:
+    dependency: "direct main"
+    description:
+      name: number_display
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.1.2"
   path:
     dependency: transitive
     description:

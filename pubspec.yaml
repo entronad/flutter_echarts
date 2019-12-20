@@ -1,6 +1,6 @@
 name: flutter_echarts
-description: Flutter wrapper for echarts.
-version: 0.1.0
+description: A Flutter widget to use Echarts in a reactive way. Features are Reactive Updating, Two Way Communication, Configurable Extensions.
+version: 1.0.0
 author: LIN Chen <entronad@gmail.com>
 homepage: https://github.com/entronad/flutter_echarts
 
@@ -15,5 +15,3 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-flutter:
