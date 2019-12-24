@@ -3,6 +3,8 @@ A Flutter widget to use [Echarts]((https://github.com/apache/incubator-echarts))
 
 [中文](https://github.com/entronad/flutter_echarts/blob/master/README_CN.md)
 
+[Developing blog](https://medium.com/@entronad/reactive-echarts-flutter-widget-fedab7f3c52f)
+
 # Features
 
 **Reactive Updating**
@@ -16,6 +18,37 @@ The `onMessage` and `extraScript` properties provide a way to set event communic
 **Configurable Extensions**
 
 Echarts has a lot of [extensions](https://echarts.apache.org/en/download-extension.html) . the `extensions` property allows you to inject the extension scripts as raw strings. In this way, you can copy these scripts to your source code, without concerning about the confusing assets dirs.
+
+# Installing
+
+**1. Depend on it**
+
+Add this to your package's pubspec.yaml file:
+
+```yaml
+dependencies:
+  flutter_echarts: ^1.0.1
+```
+
+**2. Install it**
+
+You can install packages from the command line:
+
+with Flutter:
+
+```shell
+$ flutter pub get
+```
+
+Alternatively, your editor might support `flutter pub get`. Check the docs for your editor to learn more.
+
+**3. Import it**
+
+Now in your Dart code, you can use:
+
+```dart
+import 'package:flutter_echarts/flutter_echarts.dart';  
+```
 
 # Usage
 

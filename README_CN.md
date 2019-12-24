@@ -4,6 +4,8 @@
 
 [English](https://github.com/entronad/flutter_echarts/blob/master/README.md)
 
+[开发博客](https://zhuanlan.zhihu.com/p/99034738)
+
 # 特点
 
 **响应式更新**
@@ -17,6 +19,33 @@ Flutter 和 React 组件最方便的一点是可以根据数据的变化响应�
 **配置扩展**
 
 Echarts 有很多 [扩展](https://echarts.apache.org/en/download-extension.html) 。你可以通过`extensions` 参数插入这些扩展的文本字符串，以便在源码中管理这些扩展脚本，而不需要操心繁琐的 asset 目录。
+
+# 安装
+
+**1. 设置依赖**
+
+在 pbuspec.yaml 文件中添加：
+
+```
+dependencies:
+  flutter_echarts: ^1.0.1
+```
+
+**2. 安装**
+
+编辑器会自动执行安装，或在命令行中执行
+
+```
+$ flutter pub get
+```
+
+**3. 引入代码**
+
+在要使用的文件中：
+
+```
+import 'package:flutter_echarts/flutter_echarts.dart';  
+```
 
 # 使用
 
