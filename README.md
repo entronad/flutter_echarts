@@ -1,4 +1,7 @@
-# flutter_echarts
+<p align="center">
+<img src="https://github.com/entronad/flutter_echarts/blob/master/doc/log.png" width=300 height=300 />
+</p>
+
 A Flutter widget to use [Echarts]((https://github.com/apache/incubator-echarts)) in a reactive way.
 
 [中文](https://github.com/entronad/flutter_echarts/blob/master/README_CN.md)
