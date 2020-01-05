@@ -1,6 +1,6 @@
 name: flutter_echarts
 description: A Flutter widget to use Echarts in a reactive way which builds awesome data visualization charts. Features are Reactive Updating, Two Way Communication, Configurable Extensions.
-version: 1.0.4
+version: 1.0.5
 author: LIN Chen <entronad@gmail.com>
 homepage: https://github.com/entronad/flutter_echarts
 

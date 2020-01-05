@@ -35,3 +35,9 @@
 **2020-01-01**
 
 - Fix README badge.
+
+## 1.0.5
+
+**2020-01-05**
+
+- Fix [the problem of example in README Usage chapter](https://github.com/entronad/flutter_echarts/issues/1) .
