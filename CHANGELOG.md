@@ -41,3 +41,10 @@
 **2020-01-05**
 
 - Fix [the problem of example in README Usage chapter](https://github.com/entronad/flutter_echarts/issues/1) .
+
+## 1.0.6
+
+**2020-01-07**
+
+- Ignore pubspec.lock.
+- Migrate example android to X.
