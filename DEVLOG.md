@@ -71,3 +71,30 @@ exScript
 
 
 目前webview的背景色为白色，不可更改https://github.com/flutter/flutter/issues/29300
+
+
+
+# TODO
+
+添加高级参数：
+
+- preScript在紧随echarts 脚本之后
+
+- 暴露controller（或者封装一下injectScript？）
+
+
+
+异常处理：当onError的时候，reload还是提供alt？
+
+
+
+性能提升：
+
+脚本在什么时候插入好？还要考虑extension的灵活性，
+
+html是否可事先base64编码好？最好能在编译时用dart代码编码
+
+extensions以inject的形式传入，可共用此字符串的单例
+
+处理加载时闪一下的问题
+
