@@ -21,7 +21,28 @@ class ChartPage extends StatefulWidget {
 class _ChartPageState extends State<ChartPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  List<Map<String, Object>> _data1 = [{ 'name': 'Please wait', 'value': 0 }];
+  List<Map<String, Object>> _data1 = [{
+      'name': 'Jan',
+      'value': 8726.2453,
+    }, {
+      'name': 'Feb',
+      'value': 2445.2453,
+    }, {
+      'name': 'Mar',
+      'value': 6636.2400,
+    }, {
+      'name': 'Apr',
+      'value': 4774.2453,
+    }, {
+      'name': 'May',
+      'value': 1066.2453,
+    }, {
+      'name': 'Jun',
+      'value': 4576.9932,
+    }, {
+      'name': 'Jul',
+      'value': 8926.9823,
+    }];
 
   getData1() async {
     await Future.delayed(Duration(seconds: 4));
@@ -56,7 +77,7 @@ class _ChartPageState extends State<ChartPage> {
   void initState() {
     super.initState();
 
-    this.getData1();
+    // this.getData1();
   }
 
   @override
