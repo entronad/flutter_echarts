@@ -48,3 +48,9 @@
 
 - Ignore pubspec.lock.
 - Migrate example android to X.
+
+## 1.1.0
+
+**2020-01-15**
+
+- Change the way to load html and greatly optimize performance.
