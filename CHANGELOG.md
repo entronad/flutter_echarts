@@ -54,3 +54,21 @@
 **2020-01-15**
 
 - Change the way to load html and greatly optimize performance.
+
+## 1.1.1
+
+**2020-01-20**
+
+- Something is wrong with the ios, fallback to 1.0.6 temporarily.
+
+## 1.1.2
+
+**2020-01-23**
+
+- Add html viewport meta to fix scale error in ios.
+
+## 1.1.3
+
+**2020-01-23**
+
+- Update description.

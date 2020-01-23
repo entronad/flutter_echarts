@@ -5,7 +5,6 @@
 </p>
 
 [![pub](https://img.shields.io/pub/v/flutter_echarts.svg)](https://pub.dev/packages/flutter_echarts)
-[![awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/ecomfe/awesome-echarts#dart)
 
 *A Flutter widget to use [Echarts]((https://github.com/apache/incubator-echarts)) in a reactive way.* 
 
