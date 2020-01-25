@@ -1,46 +1,33 @@
-## 0.1.0
+## 1.2.0
 
-**2019-12-18**
+**2020-01-25**
 
-- Initial beta version.
+- Specify gestureRecognizers to handle gestures.
+- Add property captureAll gestures.
 
-## 1.0.0
+## 1.1.3
 
-**2019-12-20**
+**2020-01-23**
 
-- First formal version.
-- Echarts version 4.5.0
+- Update description.
 
-## 1.0.1
+## 1.1.2
 
-**2019-12-24**
+**2020-01-23**
 
-- Add blog link and installing in README.
+- Add html viewport meta to fix scale error in ios.
 
-## 1.0.2
+## 1.1.1
 
-**2020-01-01**
+**2020-01-20**
 
-- Update README.
-- Update license year.
+- Something is wrong with the ios, fallback to 1.0.6 temporarily.
 
-## 1.0.3
+## 1.1.0
 
-**2020-01-01**
+**2020-01-15**
 
-- Fix README.
-
-## 1.0.4
-
-**2020-01-01**
-
-- Fix README badge.
-
-## 1.0.5
-
-**2020-01-05**
-
-- Fix [the problem of example in README Usage chapter](https://github.com/entronad/flutter_echarts/issues/1) .
+- Change the way to load html and greatly optimize performance.
 
 ## 1.0.6
 
@@ -49,33 +36,46 @@
 - Ignore pubspec.lock.
 - Migrate example android to X.
 
-## 1.1.0
+## 1.0.5
 
-**2020-01-15**
+**2020-01-05**
 
-- Change the way to load html and greatly optimize performance.
+- Fix [the problem of example in README Usage chapter](https://github.com/entronad/flutter_echarts/issues/1) .
 
-## 1.1.1
+## 1.0.4
 
-**2020-01-20**
+**2020-01-01**
 
-- Something is wrong with the ios, fallback to 1.0.6 temporarily.
+- Fix README badge.
 
-## 1.1.2
+## 1.0.3
 
-**2020-01-23**
+**2020-01-01**
 
-- Add html viewport meta to fix scale error in ios.
+- Fix README.
 
-## 1.1.3
+## 1.0.2
 
-**2020-01-23**
+**2020-01-01**
 
-- Update description.
+- Update README.
+- Update license year.
 
-## 1.2.0
+## 1.0.1
 
-**2020-01-25**
+**2019-12-24**
 
-- Specify gestureRecognizers to handle gestures.
-- Add property captureAll gestures.
+- Add blog link and installing in README.
+
+## 1.0.0
+
+**2019-12-20**
+
+- First formal version.
+- Echarts version 4.5.0
+
+## 0.1.0
+
+**2019-12-18**
+
+- Initial beta version.
