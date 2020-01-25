@@ -49,10 +49,6 @@ The `onMessage` and `extraScript` properties provide a way to set event communic
 
 Echarts has a lot of [extensions](https://echarts.apache.org/en/download-extension.html) . the `extensions` property allows you to inject the extension scripts as raw strings. In this way, you can copy these scripts to your source code, without concerning about the confusing assets dirs.
 
-# Blog
-
-[Developing blog](https://medium.com/@entronad/reactive-echarts-flutter-widget-fedab7f3c52f)
-
 # Installing
 
 Add this to your package's pubspec.yaml file:
@@ -115,6 +111,8 @@ A full example is here: [flutter_echarts_example](https://github.com/entronad/fl
 
 *String*
 
+*( required )*
+
 The JavaScript Echarts Option for the chart as a string. The echarts is mainly configured by this property. You could use `jsonEncode()` function in dart:convert to convert data in Dart object form:
 
 ```
@@ -168,6 +166,18 @@ const liquidPlugin = r'''
 
 ''';
 ```
+
+**captureAllGestures**
+
+*bool*
+
+*( default: false )*
+
+Whether the chart captures all gestures. Setting it ture is usefull when handling 3D rotation and data zoom bars. Note that will prevent containers like ListViews to act to gestures on the charts.
+
+# Blog
+
+[Reactive Echarts Flutter Widget](https://medium.com/@entronad/reactive-echarts-flutter-widget-fedab7f3c52f) 
 
 
 

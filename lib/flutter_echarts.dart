@@ -3,6 +3,9 @@ library flutter_echarts;
 import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/foundation.dart';
+
 import 'package:webview_flutter/webview_flutter.dart';
 
 import './echarts_script.dart' show echartsScript;
@@ -53,10 +56,11 @@ typedef OnMessage = void Function(String);
 class Echarts extends StatefulWidget {
   Echarts({
     Key key,
-    this.option,
+    @required this.option,
     this.extraScript,
     this.onMessage,
     this.extensions,
+    this.captureAllGestures = false,
   }) : super(key: key);
 
   final String option;
@@ -66,6 +70,8 @@ class Echarts extends StatefulWidget {
   final OnMessage onMessage;
 
   final List<String> extensions;
+
+  final bool captureAllGestures;
 
   @override
   _EchartsState createState() => _EchartsState();
@@ -131,6 +137,25 @@ class _EchartsState extends State<Echarts> {
           }
         ),
       ].toSet(),
+      gestureRecognizers: widget.captureAllGestures
+        ? (Set()
+          ..add(Factory<VerticalDragGestureRecognizer>(() {
+            return VerticalDragGestureRecognizer()
+              ..onStart = (DragStartDetails details) {}
+              ..onUpdate = (DragUpdateDetails details) {}
+              ..onDown = (DragDownDetails details) {}
+              ..onCancel = () {}
+              ..onEnd = (DragEndDetails details) {};
+          }))
+          ..add(Factory<HorizontalDragGestureRecognizer>(() {
+            return HorizontalDragGestureRecognizer()
+              ..onStart = (DragStartDetails details) {}
+              ..onUpdate = (DragUpdateDetails details) {}
+              ..onDown = (DragDownDetails details) {}
+              ..onCancel = () {}
+              ..onEnd = (DragEndDetails details) {};
+          })))
+        : null,
     );
   }
 }

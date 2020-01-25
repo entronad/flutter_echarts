@@ -72,3 +72,10 @@
 **2020-01-23**
 
 - Update description.
+
+## 1.2.0
+
+**2020-01-25**
+
+- Specify gestureRecognizers to handle gestures.
+- Add property captureAll gestures.

@@ -35,9 +35,6 @@
 <img src="https://user-images.githubusercontent.com/19553554/52349544-c2ce3900-2a61-11e9-82af-28aaaaae0d67.gif" width="33%" height="33%" alt="overlap"/>
 </div>
 
-# 博客
-[开发博客](https://zhuanlan.zhihu.com/p/99034738)
-
 # 特点
 
 **响应式更新**
@@ -114,6 +111,8 @@ Container(
 
 *String*
 
+*( 必需 )*
+
 字符串形式的 JavaScript Echarts Option。Echarts 图表主要就是通过这个参数配置的。你可以通过 dart:convert 中的 `jsonEncode()` 来转换 Dart 对象类型的数据：
 
 ```
@@ -167,6 +166,20 @@ const liquidPlugin = r'''
 
 ''';
 ```
+
+**captureAllGestures**
+
+*bool*
+
+*( 默认: false )*
+
+图表是否捕获所有的手势。将其设为 ture 在处理 3D 旋转或数据缩放条时很有用。注意这将阻止容器（比如 ListView ）获取图表上的手势。
+
+# 博客
+
+[响应式 Echarts Flutter 组件](https://zhuanlan.zhihu.com/p/99034738) 
+
+[一次 Flutter WebView 性能优化](https://zhuanlan.zhihu.com/p/103012116) 
 
 
 
