@@ -43,7 +43,7 @@ String _getHtml(
         <script>
           $echartsScript
           $extensionsStr
-          const chart = echarts.init(document.getElementById('chart'), null);
+          var chart = echarts.init(document.getElementById('chart'), null);
           $extraScript
         </script>
       </body>

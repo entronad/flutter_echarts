@@ -1,3 +1,9 @@
+## 1.2.1
+
+**2020-02-06**
+
+- Change `const` to `var` in script for low version ios systems. See https://github.com/entronad/flutter_echarts/issues/7 .
+
 ## 1.2.0
 
 **2020-01-25**

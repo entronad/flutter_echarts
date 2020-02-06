@@ -101,3 +101,5 @@ extensions以inject的形式传入，可共用此字符串的单例
 
 
 将回退到1.0加载方式的改动合并到主分支上，今后1.1的改动可到 follow fix-ios 这个commit上去找，删除fix-ios分支
+
+注意先将 const chart 改成 var chart 以兼容某些低版本的ios
