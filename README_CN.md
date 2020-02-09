@@ -6,7 +6,7 @@
 
 [![pub](https://img.shields.io/pub/v/flutter_echarts.svg)](https://pub.dev/packages/flutter_echarts)
 
-*响应式的 [Echarts]((https://github.com/apache/incubator-echarts))  Flutter 组件.* 
+*响应式的 [Echarts](https://echarts.apache.org/zh/index.html)  Flutter 组件.* 
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/19553554/52197440-843a5200-289a-11e9-8601-3ce8d945b04a.gif" width="33%" height="33%" alt="bar"/>
@@ -47,7 +47,7 @@ Flutter 和 React 组件最方便的一点是可以根据数据的变化响应�
 
 **配置扩展**
 
-Echarts 有很多 [扩展](https://echarts.apache.org/en/download-extension.html) 。你可以通过`extensions` 参数插入这些扩展的文本字符串，以便在源码中管理这些扩展脚本，而不需要操心繁琐的 asset 目录。
+Echarts 有很多 [扩展](https://echarts.apache.org/zh/download-extension.html) 。你可以通过`extensions` 参数插入这些扩展的文本字符串，以便在源码中管理这些扩展脚本，而不需要操心繁琐的 asset 目录。
 
 # 安装
 
@@ -70,7 +70,7 @@ import 'package:flutter_echarts/flutter_echarts.dart';
 
 flutter_echarts 使用起来很简单，就像在使用普通的 statelessWidget ：
 
-> option 的具体设置请见 [Echarts 文档](https://echarts.apache.org/cn/option.html#title) 或 [Echarts 示例](https://echarts.apache.org/examples/cn/index.html) 。
+> option 的具体设置请见 [Echarts 文档](https://echarts.apache.org/zh/option.html#title) 或 [Echarts 示例](https://echarts.apache.org/examples/zh/index.html) 。
 
 ```
 Container(
@@ -157,7 +157,7 @@ extraScript: '''
 
 *List\<String\>*
 
-从 Echarts 扩展中拷贝的脚本字符串组成的数组，比如各种组件、WebGl、语言等。可以从 [这里](https://echarts.apache.org/en/download-extension.html) 下载。将它们作为原始字符串（raw string）引入：
+从 Echarts 扩展中拷贝的脚本字符串组成的数组，比如各种组件、WebGl、语言等。可以从 [这里](https://echarts.apache.org/zh/download-extension.html) 下载。将它们作为原始字符串（raw string）引入：
 
 ```
 const liquidPlugin = r'''
