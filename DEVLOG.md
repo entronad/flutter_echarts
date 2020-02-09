@@ -74,32 +74,22 @@ exScript
 
 
 
-# TODO
+性能优化
 
-添加高级参数：
-
-- preScript在紧随echarts 脚本之后
-
-- 暴露controller（或者封装一下injectScript？）
-
-
-
-异常处理：当onError的时候，reload还是提供alt？
-
-
-
-性能提升：
-
-脚本在什么时候插入好？还要考虑extension的灵活性，
-
-html是否可事先base64编码好？最好能在编译时用dart代码编码
-
-extensions以inject的形式传入，可共用此字符串的单例
-
-处理加载时闪一下的问题
-
-
-
-将回退到1.0加载方式的改动合并到主分支上，今后1.1的改动可到 follow fix-ios 这个commit上去找，删除fix-ios分支
+~~将回退到1.0加载方式的改动合并到主分支上，今后1.1的改动可到 follow fix-ios 这个commit上去找，删除fix-ios分支~~
 
 注意先将 const chart 改成 var chart 以兼容某些低版本的ios
+
+1.2.2 找到优化在ios上不行的原因了，貌似是转码有些问题，用官方示例中的方式获取的base64编码是可以的，就用这种方式，同时将onUpdate中的脚本用try catch包起来，防止ios报错
+
+
+
+尚存在问题
+
+背景白色不可修改
+
+加载时会黑闪一下
+
+手势捕捉可以再细化一下
+
+暴露更多高级参数

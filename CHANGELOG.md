@@ -1,3 +1,9 @@
+## 1.2.2
+
+**2020-02-09**
+
+- Fix the ios encoding bug of the optimization in 1.1.0 and re-implement it.
+
 ## 1.2.1
 
 **2020-02-06**
