@@ -93,3 +93,11 @@ exScript
 手势捕捉可以再细化一下
 
 暴露更多高级参数
+
+
+
+2020-03-01
+
+把所有echartsscript提前转成base64放在url中性能还不如放在inject中
+
+inject的await会等所有渲染完成，故后面可跟渲染完成的回调
