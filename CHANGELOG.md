@@ -1,3 +1,10 @@
+## 1.3.0
+
+**2020-03-07**
+
+- Upgrade Echarts to version 4.7.0
+- Add the feature to set themes.
+
 ## 1.2.3
 
 **2020-02-09**

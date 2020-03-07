@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 
 import 'package:webview_flutter/webview_flutter.dart';
 
-import './echarts_script.dart' show echartsScript;
+import 'echarts_script.dart' show echartsScript;
 
 /// <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, target-densitydpi=device-dpi" /><style type="text/css">body,html,#chart{height: 100%;width: 100%;margin: 0px;}div {-webkit-tap-highlight-color:rgba(255,255,255,0);}</style></head><body><div id="chart" /></body></html>
 /// 'data:text/html;base64,' + base64Encode(const Utf8Encoder().convert( /* STRING ABOVE */ ))
@@ -21,6 +21,7 @@ class Echarts extends StatefulWidget {
     this.extraScript = '',
     this.onMessage,
     this.extensions = const [],
+    this.theme,
     this.captureAllGestures = false,
   }) : super(key: key);
 
@@ -31,6 +32,8 @@ class Echarts extends StatefulWidget {
   final OnMessage onMessage;
 
   final List<String> extensions;
+
+  final String theme;
 
   final bool captureAllGestures;
 
@@ -55,10 +58,11 @@ class _EchartsState extends State<Echarts> {
         (value, element) => (value ?? '') + '\n' + (element ?? '')
       )
     : '';
+    final themeStr = this.widget.theme != null ? '\'${this.widget.theme}\'' : 'null';
     await _controller?.evaluateJavascript('''
       $echartsScript
       $extensionsStr
-      var chart = echarts.init(document.getElementById('chart'), null);
+      var chart = echarts.init(document.getElementById('chart'), $themeStr);
       ${this.widget.extraScript}
       chart.setOption($_currentOption, true);
     ''');

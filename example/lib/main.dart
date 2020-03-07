@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_echarts/flutter_echarts.dart';
 import 'package:number_display/number_display.dart';
 
-import './liquid_script.dart' show liquidScript;
-import './gl_script.dart' show glScript;
+import 'liquid_script.dart' show liquidScript;
+import 'gl_script.dart' show glScript;
+import 'dark_theme_script.dart' show darkThemeScript;
 
 final display = createDisplay(decimal: 2);
 
@@ -318,6 +319,70 @@ class _MyHomePageState extends State<MyHomePage> {
                                 }
                             }
                         }]
+                    }
+                  ''',
+                ),
+                width: 300,
+                height: 250,
+              ),
+              Padding(
+                child: Text('Dark Theme', style: TextStyle(fontSize: 20)),
+                padding: EdgeInsets.fromLTRB(0, 40, 0, 20),
+              ),
+              Container(
+                child: Echarts(
+                  extensions: [darkThemeScript],
+                  theme: 'dark',
+                  option: '''
+                    {
+                      legend: {
+                        data: ['Visit', 'Market', 'Ad', 'Video', 'Search']
+                      },
+                      grid: {
+                        left: '3%',
+                        right: '8%',
+                        bottom: '3%',
+                        containLabel: true
+                      },
+                      xAxis: {
+                        type: 'value'
+                      },
+                      yAxis: {
+                        type: 'category',
+                        data: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7']
+                      },
+                      series: [
+                        {
+                          name: 'Visit',
+                          type: 'bar',
+                          stack: 'total',
+                          data: [320, 302, 301, 334, 390, 330, 320]
+                        },
+                        {
+                          name: 'Market',
+                          type: 'bar',
+                          stack: 'total',
+                          data: [120, 132, 101, 134, 90, 230, 210]
+                        },
+                        {
+                          name: 'Ad',
+                          type: 'bar',
+                          stack: 'total',
+                          data: [220, 182, 191, 234, 290, 330, 310]
+                        },
+                        {
+                          name: 'Video',
+                          type: 'bar',
+                          stack: 'total',
+                          data: [150, 212, 201, 154, 190, 330, 410]
+                        },
+                        {
+                          name: 'Search',
+                          type: 'bar',
+                          stack: 'total',
+                          data: [820, 832, 901, 934, 1290, 1330, 1320]
+                        }
+                      ]
                     }
                   ''',
                 ),

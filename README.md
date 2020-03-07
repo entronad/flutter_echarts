@@ -157,7 +157,7 @@ Function to handle the message sent by `Messager.postMessage()` in `extraScript`
 
 *List\<String\>*
 
-List of strings that coyied from Echarts extensions, such as components, WebGL, languages, etc. You can download them [here](https://echarts.apache.org/en/download-extension.html) . Insert them as raw strings:
+List of strings that coyied from Echarts extensions, such as themes, components, WebGL, languages, etc. You can download them [here](https://echarts.apache.org/en/download-extension.html) . Insert them as raw strings:
 
 ```
 const liquidPlugin = r'''
@@ -166,6 +166,12 @@ const liquidPlugin = r'''
 
 ''';
 ```
+
+**theme**
+
+*String*
+
+You can download built-in themes [here](https://echarts.apache.org/en/download-theme.html) or build own custom themes with [this tool](https://echarts.baidu.com/theme-builder/) . Copy the theme script into the `extensions` param and register the theme name with this param.
 
 **captureAllGestures**
 

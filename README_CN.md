@@ -157,7 +157,7 @@ extraScript: '''
 
 *List\<String\>*
 
-从 Echarts 扩展中拷贝的脚本字符串组成的数组，比如各种组件、WebGl、语言等。可以从 [这里](https://echarts.apache.org/zh/download-extension.html) 下载。将它们作为原始字符串（raw string）引入：
+从 Echarts 扩展中拷贝的脚本字符串组成的数组，比如各种主题、组件、WebGl、语言等。可以从 [这里](https://echarts.apache.org/zh/download-extension.html) 下载。将它们作为原始字符串（raw string）引入：
 
 ```
 const liquidPlugin = r'''
@@ -166,6 +166,12 @@ const liquidPlugin = r'''
 
 ''';
 ```
+
+**theme**
+
+*String*
+
+从 [这里](https://echarts.apache.org/zh/download-theme.html) 可以下载主题，或者用 [这个工具](https://echarts.baidu.com/theme-builder/) 定制自己的主题。将主题的脚本拷贝到 `extension` 参数中，并在此参数中注册主题的名称。
 
 **captureAllGestures**
 
