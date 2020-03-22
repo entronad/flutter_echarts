@@ -131,6 +131,12 @@ Echarts(
 ),
 ```
 
+- 如果需要在 option 中使用图片，我们建议使用 Base64 [Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) :
+
+```
+image: 'data:image/png;base64,iVBORw0KG...',
+```
+
 **extraScript**
 
 *String*

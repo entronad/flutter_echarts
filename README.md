@@ -113,13 +113,15 @@ A full example is here: [flutter_echarts_example](https://github.com/entronad/fl
 
 *( required )*
 
-The JavaScript Echarts Option for the chart as a string. The echarts is mainly configured by this property. You could use `jsonEncode()` function in dart:convert to convert data in Dart object form:
+The JavaScript Echarts Option for the chart as a string. The echarts is mainly configured by this property. 
+
+- You could use `jsonEncode()` function in dart:convert to convert data in Dart object form:
 
 ```
 source: ${jsonEncode(_data1)},
 ```
 
-Because JavaScript don't have `'''` , you can use this operator to reduce some escape operators for quotas:
+- Because JavaScript don't have `'''` , you can use this operator to reduce some escape operators for quotas:
 
 ```
 Echarts(
@@ -129,6 +131,12 @@ Echarts(
     
   ''',
 ),
+```
+
+- To use images in option propertis, we suggest the Base64 [Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) :
+
+```
+image: 'data:image/png;base64,iVBORw0KG...',
 ```
 
 **extraScript**
