@@ -46,6 +46,10 @@ class _EchartsState extends State<Echarts> {
 
   String _currentOption;
 
+  // --- FIX_BLINK ---
+  bool _pageFinished = false;
+  // --- FIX_BLINK ---
+
   @override
   void initState() {
     super.initState();
@@ -88,42 +92,52 @@ class _EchartsState extends State<Echarts> {
 
   @override
   Widget build(BuildContext context) {
-    return WebView(
-      initialUrl: htmlBase64,
-      javascriptMode: JavascriptMode.unrestricted,
-      onWebViewCreated: (WebViewController webViewController) {
-        _controller = webViewController;
-      },
-      onPageFinished: (String url) {
-        init();
-      },
-      javascriptChannels: <JavascriptChannel>[
-        JavascriptChannel(
-          name: 'Messager',
-          onMessageReceived: (JavascriptMessage javascriptMessage) {
-            widget?.onMessage(javascriptMessage.message);
-          }
-        ),
-      ].toSet(),
-      gestureRecognizers: widget.captureAllGestures
-        ? (Set()
-          ..add(Factory<VerticalDragGestureRecognizer>(() {
-            return VerticalDragGestureRecognizer()
-              ..onStart = (DragStartDetails details) {}
-              ..onUpdate = (DragUpdateDetails details) {}
-              ..onDown = (DragDownDetails details) {}
-              ..onCancel = () {}
-              ..onEnd = (DragEndDetails details) {};
-          }))
-          ..add(Factory<HorizontalDragGestureRecognizer>(() {
-            return HorizontalDragGestureRecognizer()
-              ..onStart = (DragStartDetails details) {}
-              ..onUpdate = (DragUpdateDetails details) {}
-              ..onDown = (DragDownDetails details) {}
-              ..onCancel = () {}
-              ..onEnd = (DragEndDetails details) {};
-          })))
-        : null,
+    // --- FIX_BLINK ---
+    return Opacity(
+      opacity: _pageFinished ? 1.0 : 0.0,
+    // --- FIX_BLINK ---
+      child: WebView(
+        initialUrl: htmlBase64,
+        javascriptMode: JavascriptMode.unrestricted,
+        onWebViewCreated: (WebViewController webViewController) {
+          _controller = webViewController;
+        },
+        onPageFinished: (String url) {
+          // --- FIX_BLINK ---
+          setState(() {
+            _pageFinished = true;
+          });
+          // --- FIX_BLINK ---
+          init();
+        },
+        javascriptChannels: <JavascriptChannel>[
+          JavascriptChannel(
+            name: 'Messager',
+            onMessageReceived: (JavascriptMessage javascriptMessage) {
+              widget?.onMessage(javascriptMessage.message);
+            }
+          ),
+        ].toSet(),
+        gestureRecognizers: widget.captureAllGestures
+          ? (Set()
+            ..add(Factory<VerticalDragGestureRecognizer>(() {
+              return VerticalDragGestureRecognizer()
+                ..onStart = (DragStartDetails details) {}
+                ..onUpdate = (DragUpdateDetails details) {}
+                ..onDown = (DragDownDetails details) {}
+                ..onCancel = () {}
+                ..onEnd = (DragEndDetails details) {};
+            }))
+            ..add(Factory<HorizontalDragGestureRecognizer>(() {
+              return HorizontalDragGestureRecognizer()
+                ..onStart = (DragStartDetails details) {}
+                ..onUpdate = (DragUpdateDetails details) {}
+                ..onDown = (DragDownDetails details) {}
+                ..onCancel = () {}
+                ..onEnd = (DragEndDetails details) {};
+            })))
+          : null,
+      )
     );
   }
 }
