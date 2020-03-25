@@ -1,5 +1,9 @@
 library flutter_echarts;
 
+// --- FIX_BLINK ---
+import 'dart:io' show Platform;
+// --- FIX_BLINK ---
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/foundation.dart';
@@ -47,7 +51,7 @@ class _EchartsState extends State<Echarts> {
   String _currentOption;
 
   // --- FIX_BLINK ---
-  bool _pageFinished = false;
+  double _opacity = Platform.isAndroid ? 0.0 : 1.0;
   // --- FIX_BLINK ---
 
   @override
@@ -94,7 +98,7 @@ class _EchartsState extends State<Echarts> {
   Widget build(BuildContext context) {
     // --- FIX_BLINK ---
     return Opacity(
-      opacity: _pageFinished ? 1.0 : 0.0,
+      opacity: _opacity,
     // --- FIX_BLINK ---
       child: WebView(
         initialUrl: htmlBase64,
@@ -104,9 +108,9 @@ class _EchartsState extends State<Echarts> {
         },
         onPageFinished: (String url) {
           // --- FIX_BLINK ---
-          setState(() {
-            _pageFinished = true;
-          });
+          if (Platform.isAndroid) {
+            setState(() { _opacity = 1.0; });
+          }
           // --- FIX_BLINK ---
           init();
         },
