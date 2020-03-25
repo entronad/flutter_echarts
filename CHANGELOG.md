@@ -1,3 +1,9 @@
+## 1.3.1
+
+**2020-03-25**
+
+- Fix the black blink when loaded on Android.
+
 ## 1.3.0
 
 **2020-03-07**

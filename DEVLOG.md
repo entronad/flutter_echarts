@@ -101,3 +101,7 @@ exScript
 把所有echartsscript提前转成base64放在url中性能还不如放在inject中
 
 inject的await会等所有渲染完成，故后面可跟渲染完成的回调
+
+2020-03-25
+
+目前在 Android 端加载时黑闪的问题暂时用opacity处理一下
