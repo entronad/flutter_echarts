@@ -39,15 +39,15 @@
 
 **Reactive Updating**
 
-The most exciting feature of Flutter widgets and React components is that the view could update reactively to the change of data. Thanks to Echarts' data driving architecture, flutter_echarts implemented a reactive way to connect chart with data. The chart will automatically re-render when the data in the `option` property changes.
+The most exciting feature of Flutter widgets and React components is that the view can update reactively when data changes. Thanks to ECharts' data driven architecture, `flutter_echarts` implements a reactive way to connect charts with data. The charts automatically re-render when data in the `option` property changes.
 
 **Two Way Communication**
 
-The `onMessage` and `extraScript` properties provide a way to set event communication both from flutter to JavaScript or in controversy.
+The `onMessage` and `extraScript` properties provide a way to set two-way event communication between Flutter and JavaScript.
 
 **Configurable Extensions**
 
-Echarts has a lot of [extensions](https://echarts.apache.org/en/download-extension.html) . the `extensions` property allows you to inject the extension scripts as raw strings. In this way, you can copy these scripts to your source code, without concerning about the confusing assets dirs.
+ECharts has a lot of [extensions](https://echarts.apache.org/en/download-extension.html). The `extensions` property allows you to inject the extension scripts as raw strings. In this way, you can copy these scripts to your source code without being confusing by assets dirs.
 
 # Installing
 
@@ -64,13 +64,13 @@ Now in your Dart code, you can use:
 import 'package:flutter_echarts/flutter_echarts.dart';  
 ```
 
-Details see [pub.dev](https://pub.dev/packages/flutter_echarts#-installing-tab-) .
+Details see [pub.dev](https://pub.dev/packages/flutter_echarts#-installing-tab-).
 
 # Usage
 
-The flutter_echarts itself is very simple to use, just like a common statelessWidget:
+The `flutter_echarts` package itself is very simple to use, just like a common `statelessWidget`:
 
-> Details about the option is in the [Echarts docs](https://echarts.apache.org/en/option.html#title) or [Echarts examples](https://echarts.apache.org/examples/en/index.html) 
+> Details about the `option` object is in the [Echarts docs](https://echarts.apache.org/en/option.html) or [Echarts examples](https://echarts.apache.org/examples/en/index.html).
 
 ```
 Container(
@@ -96,14 +96,14 @@ Container(
 )
 ```
 
-For an ios app, you need to add this entry to your Info.plist' `<dic>` tag:
+For an iOS app, you need to add this entry to your `Info.plist` `<dic>` tag:
 
 ```
 <key>io.flutter.embedded_views_preview</key>
 <string>YES</string>
 ```
 
-A full example is here: [flutter_echarts_example](https://github.com/entronad/flutter_echarts/tree/master/example) .
+See the full [flutter_echarts_example](https://github.com/entronad/flutter_echarts/tree/master/example).
 
 # Widget Properties
 
@@ -113,15 +113,15 @@ A full example is here: [flutter_echarts_example](https://github.com/entronad/fl
 
 *( required )*
 
-The JavaScript Echarts Option for the chart as a string. The echarts is mainly configured by this property. 
+ECharts is mainly configured by passing a string value to the JavaScript `option` property. 
 
-- You could use `jsonEncode()` function in dart:convert to convert data in Dart object form:
+You can use `jsonEncode()` function in `dart:convert` to convert data in Dart object form:
 
 ```
 source: ${jsonEncode(_data1)},
 ```
 
-- Because JavaScript don't have `'''` , you can use this operator to reduce some escape operators for quotas:
+Because JavaScript don't have `'''`, you can use this operator to reduce some escape operators for quotas:
 
 ```
 Echarts(
@@ -133,7 +133,7 @@ Echarts(
 ),
 ```
 
-- To use images in option propertis, we suggest the Base64 [Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) :
+To use images in option properties, we suggest the Base64 [Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) :
 
 ```
 image: 'data:image/png;base64,iVBORw0KG...',
@@ -143,13 +143,13 @@ image: 'data:image/png;base64,iVBORw0KG...',
 
 *String*
 
-The JavaScript which will execute after the `Echarts.init()` and before any `chart.setOption()` . The widget has build a javascriptChennel named `Messager`, so you could use this identifier to send message from JavaScript to Flutter:
+JavaScript which will execute after the `Echarts.init()` and before any `chart.setOption()`. The widget has a Javascript channel named `Messager`, so you can use this identifier to send messages from JavaScript to Flutter:
 
 ```
 extraScript: '''
   chart.on('click', (params) => {
     if(params.componentType === 'series') {
-  	  Messager.postMessage('anything');
+        Messager.postMessage('anything');
     }
   });
 ''',
@@ -165,7 +165,7 @@ Function to handle the message sent by `Messager.postMessage()` in `extraScript`
 
 *List\<String\>*
 
-List of strings that coyied from Echarts extensions, such as themes, components, WebGL, languages, etc. You can download them [here](https://echarts.apache.org/en/download-extension.html) . Insert them as raw strings:
+List of strings are from Echarts extensions, such as themes, components, WebGL, and languages. You can download them [from the official ECharts extension list](https://echarts.apache.org/en/download-extension.html). Insert extensions as raw strings:
 
 ```
 const liquidPlugin = r'''
@@ -179,7 +179,7 @@ const liquidPlugin = r'''
 
 *String*
 
-You can download built-in themes [here](https://echarts.apache.org/en/download-theme.html) or build own custom themes with [this tool](https://echarts.baidu.com/theme-builder/) . Copy the theme script into the `extensions` param and register the theme name with this param.
+You can [download built-in ECharts themes](https://echarts.apache.org/en/download-theme.html) or build your own custom themes with [the ECharts theme builder](https://echarts.baidu.com/theme-builder/). Copy the theme script into the `extensions` param and register the theme name with this param.
 
 **captureAllGestures**
 
@@ -187,7 +187,7 @@ You can download built-in themes [here](https://echarts.apache.org/en/download-t
 
 *( default: false )*
 
-Whether the chart captures all gestures. Setting it ture is usefull when handling 3D rotation and data zoom bars. Note that will prevent containers like ListViews to act to gestures on the charts.
+Setting `captureAllGestures` to `true` is useful when handling 3D rotation and data zoom bars. Note that setting prevents containers like ListViews from reacting to gestures on the charts.
 
 # Blog
 
@@ -199,6 +199,6 @@ Whether the chart captures all gestures. Setting it ture is usefull when handlin
 
 ---
 
-If you have any suggestions or demands, please give an [issue](https://github.com/entronad/flutter_echarts/issues) .
+If you have any suggestions or requests, please open an [issue](https://github.com/entronad/flutter_echarts/issues).
 
 *The gallery GIF is from [chenjiandongx](https://github.com/chenjiandongx)*
