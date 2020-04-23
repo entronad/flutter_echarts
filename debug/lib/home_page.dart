@@ -18,11 +18,11 @@ final packages = <Package>[
     endPoint: 'home_page',
     version: '1.0.6',
   ),
-  // Package(
-  //   name: 'charts_flutter',
-  //   github: 'google/charts',
-  //   version: '0.5.0',
-  // ),
+  Package(
+    name: 'Reset test',
+    endPoint: 'reset_page',
+    version: '0.5.0',
+  ),
   // Package(
   //   name: 'flutter_circular_chart',
   //   github: 'xqwzts/flutter_circular_chart',

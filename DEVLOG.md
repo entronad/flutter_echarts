@@ -105,3 +105,29 @@ inject的await会等所有渲染完成，故后面可跟渲染完成的回调
 2020-03-25
 
 目前在 Android 端加载时黑闪的问题暂时用opacity处理一下
+
+
+
+2020-04-23
+
+update时在dart里进行option字符串比对是必要的，当update很频繁但实际不需要option一样时，在dart内进行的字符串比对算法是可以contain住的，setOption过快则会导致崩溃。
+
+
+
+TODO
+
+等 webview 可以了需要把白色背景改成透明
+
+android上会黑闪一下，ios上夜间模式会黑闪一下
+
+
+
+添加onload
+
+手势拾取存在bug
+
+验证一下setState到setOption之间是否要判断字符串    目前看来可去
+
+存在内存泄露的问题，可能与 cache 有关
+
+升级至 0.3.20

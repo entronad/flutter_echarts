@@ -16,8 +16,6 @@ import 'echarts_script.dart' show echartsScript;
 /// 'data:text/html;base64,' + base64Encode(const Utf8Encoder().convert( /* STRING ABOVE */ ))
 const htmlBase64 = 'data:text/html;base64,PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PG1ldGEgY2hhcnNldD0idXRmLTgiPjxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250ZW50PSJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MS4wLCBtYXhpbXVtLXNjYWxlPTEuMCwgbWluaW11bS1zY2FsZT0xLjAsIHVzZXItc2NhbGFibGU9MCwgdGFyZ2V0LWRlbnNpdHlkcGk9ZGV2aWNlLWRwaSIgLz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPmJvZHksaHRtbCwjY2hhcnR7aGVpZ2h0OiAxMDAlO3dpZHRoOiAxMDAlO21hcmdpbjogMHB4O31kaXYgey13ZWJraXQtdGFwLWhpZ2hsaWdodC1jb2xvcjpyZ2JhKDI1NSwyNTUsMjU1LDApO308L3N0eWxlPjwvaGVhZD48Ym9keT48ZGl2IGlkPSJjaGFydCIgLz48L2JvZHk+PC9odG1sPg==';
 
-typedef OnMessage = void Function(String);
-
 class Echarts extends StatefulWidget {
   Echarts({
     Key key,
@@ -33,13 +31,17 @@ class Echarts extends StatefulWidget {
 
   final String extraScript;
 
-  final OnMessage onMessage;
+  final void Function(String) onMessage;
 
   final List<String> extensions;
 
   final String theme;
 
   final bool captureAllGestures;
+
+  final bool shouldReload;
+
+  final void Function() onLoad;
 
   @override
   _EchartsState createState() => _EchartsState();
@@ -93,6 +95,16 @@ class _EchartsState extends State<Echarts> {
     super.didUpdateWidget(oldWidget);
     update(oldWidget.option);
   }
+
+  // --- FIX_IOS_LEAK ---
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.loadUrl(null).then((_) {
+      _controller.clearCache();
+    });
+  }
+  // --- FIX_IOS_LEAK ---
 
   @override
   Widget build(BuildContext context) {
