@@ -25,21 +25,20 @@ class Echarts extends StatefulWidget {
     this.extensions = const [],
     this.theme,
     this.captureAllGestures = false,
+    this.onLoad,
   }) : super(key: key);
 
   final String option;
 
   final String extraScript;
 
-  final void Function(String) onMessage;
+  final void Function(String message) onMessage;
 
   final List<String> extensions;
 
   final String theme;
 
   final bool captureAllGestures;
-
-  final bool shouldReload;
 
   final void Function() onLoad;
 
@@ -76,6 +75,9 @@ class _EchartsState extends State<Echarts> {
       ${this.widget.extraScript}
       chart.setOption($_currentOption, true);
     ''');
+    if (widget.onLoad != null) {
+      widget.onLoad();
+    }
   }
 
   void update(String preOption) async {

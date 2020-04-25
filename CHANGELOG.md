@@ -1,3 +1,10 @@
+## 1.3.2
+
+**2020-04-25**
+
+- Add onLoad param.
+- Fix the memory leak on iOS.
+
 ## 1.3.1
 
 **2020-03-25**

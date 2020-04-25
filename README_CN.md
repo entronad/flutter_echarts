@@ -187,6 +187,12 @@ const liquidPlugin = r'''
 
 图表是否捕获所有的手势。将其设为 ture 在处理 3D 旋转或数据缩放条时很有用。注意这将阻止容器（比如 ListView ）获取图表上的手势。
 
+**onLoad**
+
+*void Function()*
+
+图表第一次加载并渲染后的回调。
+
 # 博客
 
 [响应式 Echarts Flutter 组件](https://zhuanlan.zhihu.com/p/99034738) 

@@ -189,6 +189,12 @@ You can [download built-in ECharts themes](https://echarts.apache.org/en/downloa
 
 Setting `captureAllGestures` to `true` is useful when handling 3D rotation and data zoom bars. Note that setting prevents containers like ListViews from reacting to gestures on the charts.
 
+**onLoad**
+
+*void Function()*
+
+The callback when first time the chart is loaded and rendered.
+
 # Blog
 
 [Reactive Echarts Flutter Widget](https://medium.com/@entronad/reactive-echarts-flutter-widget-fedab7f3c52f) 
