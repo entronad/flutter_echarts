@@ -4,6 +4,7 @@
 
 - Add onLoad param.
 - Fix the memory leak on iOS.
+- Upgrade webview_flutter to 0.3.20.
 
 ## 1.3.1
 
