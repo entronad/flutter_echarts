@@ -102,7 +102,7 @@ class _EchartsState extends State<Echarts> {
   @override
   void dispose() {
     super.dispose();
-    _controller.loadUrl(null).then((_) {
+    _controller.loadUrl('').then((_) {
       _controller.clearCache();
     });
   }
