@@ -101,7 +101,9 @@ class _EchartsState extends State<Echarts> {
   // --- FIX_IOS_LEAK ---
   @override
   void dispose() {
-    _controller.clearCache();
+    if (Platform.isIOS) {
+      _controller.clearCache();
+    }
     super.dispose();
   }
   // --- FIX_IOS_LEAK ---
