@@ -6,7 +6,7 @@
 
 [![pub](https://img.shields.io/pub/v/flutter_echarts.svg)](https://pub.dev/packages/flutter_echarts)
 
-*响应式 [Echarts](https://echarts.apache.org/zh/index.html) Flutter 组件。* 
+*响应式 [Apache ECharts (incubating)](https://github.com/apache/incubator-echarts) Flutter 组件。* 
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/19553554/52197440-843a5200-289a-11e9-8601-3ce8d945b04a.gif" width="33%" height="33%" alt="bar"/>
