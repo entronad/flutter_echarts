@@ -1,3 +1,9 @@
+## 1.3.6
+
+**2020-09-17**
+
+- Update Apache ECharts (incubating) official name.
+
 ## 1.3.5
 
 **2020-05-07**
