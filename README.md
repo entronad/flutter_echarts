@@ -96,12 +96,7 @@ Container(
 )
 ```
 
-For an iOS app, you need to add this entry to your `Info.plist` `<dic>` tag:
 
-```
-<key>io.flutter.embedded_views_preview</key>
-<string>YES</string>
-```
 
 See the full [flutter_echarts_example](https://github.com/entronad/flutter_echarts/tree/master/example).
 
