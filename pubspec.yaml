@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter: ^0.3.21
+  webview_flutter: ^1.0.5
 
 dev_dependencies:
   flutter_test:
