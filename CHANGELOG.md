@@ -1,3 +1,9 @@
+## 1.4.0
+
+**2020-10-28**
+
+- Update webview_flutter to version 1.0.5, witch has been out of developer preview.
+
 ## 1.3.6
 
 **2020-09-17**
