@@ -25,6 +25,8 @@ class Echarts extends StatefulWidget {
     this.extensions = const [],
     this.theme,
     this.captureAllGestures = false,
+    this.captureHorizontalGestures = false,
+    this.captureVerticalGestures = false,
     this.onLoad,
   }) : super(key: key);
 
@@ -39,6 +41,10 @@ class Echarts extends StatefulWidget {
   final String theme;
 
   final bool captureAllGestures;
+
+  final bool captureHorizontalGestures;
+
+  final bool captureVerticalGestures;
 
   final void Function() onLoad;
 
@@ -78,6 +84,31 @@ class _EchartsState extends State<Echarts> {
     if (widget.onLoad != null) {
       widget.onLoad();
     }
+  }
+
+  Set<Factory<OneSequenceGestureRecognizer>> getGestureRecognizers() {
+    Set<Factory<OneSequenceGestureRecognizer>> set = Set();
+    if(this.widget.captureAllGestures || this.widget.captureHorizontalGestures) {
+      set.add(Factory<HorizontalDragGestureRecognizer>(() {
+        return HorizontalDragGestureRecognizer()
+          ..onStart = (DragStartDetails details) {}
+          ..onUpdate = (DragUpdateDetails details) {}
+          ..onDown = (DragDownDetails details) {}
+          ..onCancel = () {}
+          ..onEnd = (DragEndDetails details) {};
+      }));
+    }
+    if(this.widget.captureAllGestures || this.widget.captureVerticalGestures) {
+      set.add(Factory<VerticalDragGestureRecognizer>(() {
+        return VerticalDragGestureRecognizer()
+          ..onStart = (DragStartDetails details) {}
+          ..onUpdate = (DragUpdateDetails details) {}
+          ..onDown = (DragDownDetails details) {}
+          ..onCancel = () {}
+          ..onEnd = (DragEndDetails details) {};
+      }));
+    }
+    return set;
   }
 
   void update(String preOption) async {
@@ -136,25 +167,7 @@ class _EchartsState extends State<Echarts> {
             }
           ),
         ].toSet(),
-        gestureRecognizers: widget.captureAllGestures
-          ? (Set()
-            ..add(Factory<VerticalDragGestureRecognizer>(() {
-              return VerticalDragGestureRecognizer()
-                ..onStart = (DragStartDetails details) {}
-                ..onUpdate = (DragUpdateDetails details) {}
-                ..onDown = (DragDownDetails details) {}
-                ..onCancel = () {}
-                ..onEnd = (DragEndDetails details) {};
-            }))
-            ..add(Factory<HorizontalDragGestureRecognizer>(() {
-              return HorizontalDragGestureRecognizer()
-                ..onStart = (DragStartDetails details) {}
-                ..onUpdate = (DragUpdateDetails details) {}
-                ..onDown = (DragDownDetails details) {}
-                ..onCancel = () {}
-                ..onEnd = (DragEndDetails details) {};
-            })))
-          : null,
+        gestureRecognizers: getGestureRecognizers()
       )
     );
   }
