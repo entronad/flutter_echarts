@@ -96,13 +96,6 @@ Container(
 )
 ```
 
-在 ios 应用中，你需要在  Info.plist 的 `<dic>` 标签加入：
-
-```
-<key>io.flutter.embedded_views_preview</key>
-<string>YES</string>
-```
-
 完整使用示例请见： [flutter_echarts_example](https://github.com/entronad/flutter_echarts/tree/master/example) 。
 
 # 组件参数
