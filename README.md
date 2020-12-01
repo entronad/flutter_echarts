@@ -37,7 +37,7 @@
 
 # Features
 
-> **Note**: flutter_echarts focuses on complex charts and interactions. It's implemented by WebView. If you prefer better performance and capability, and only need simpler charts, we recommend this pure Flutter visualization lib: [Graphic](https://github.com/entronad/graphic)
+> **Note**: flutter_echarts focuses on complex charts and interactions. It's implemented by WebView. If you prefer better performance and capability but simpler charts, we recommend this pure Flutter visualization lib: [Graphic](https://github.com/entronad/graphic)
 
 
 

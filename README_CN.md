@@ -37,7 +37,7 @@
 
 # 特点
 
-> **提示**：flutter_echarts 主要为提供复杂的图表和交互。它通过 WebView 实现。您对性能和兼容性要求更高，且仅需要简单的图表，推荐纯 Flutter 可视化库：[Graphic](https://github.com/entronad/graphic)
+> **提示**：flutter_echarts 主要为提供复杂的图表和交互。它通过 WebView 实现。您对性能和兼容性要求更高，而仅需要简单的图表，推荐纯 Flutter 可视化库：[Graphic](https://github.com/entronad/graphic)
 
 
 
