@@ -37,6 +37,10 @@
 
 # 特点
 
+> **提示**：flutter_echarts 基于 WebView ，主要为提供复杂的图表和交互，性能和兼容性不是最佳，如需简单的图表，推荐纯 Flutter 可视化库：[Graphic](https://github.com/entronad/graphic)
+
+
+
 **响应式更新**
 
 Flutter 和 React 组件最方便的一点是可以根据数据的变化响应式的更新视图。基于 Echarts 数据驱动式的架构，flutter_echarts 为图表和数据建立了一种响应式的联系。当`option` 参数中的数据变化时，图表可以自动重新渲染。
@@ -179,6 +183,24 @@ const liquidPlugin = r'''
 *( 默认: false )*
 
 图表是否捕获所有的手势。将其设为 ture 在处理 3D 旋转或数据缩放条时很有用。注意这将阻止容器（比如 ListView ）获取图表上的手势。
+
+如果设为 true， `captureHorizontalGestures` 和 `captureVerticalGestures` 将强制为 true。
+
+**captureHorizontalGestures**
+
+*bool*
+
+*( 默认: false )*
+
+仅捕捉水平滑动。
+
+**captureVerticalGestures**
+
+*bool*
+
+*( 默认: false )*
+
+仅捕捉垂直滑动。
 
 **onLoad**
 

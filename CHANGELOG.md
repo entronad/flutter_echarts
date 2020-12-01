@@ -1,3 +1,9 @@
+## 1.5.0
+
+**2020-12-01**
+
+- Add `captureHorizontalGestures` and `captureVerticalGestures`.
+
 ## 1.4.0
 
 **2020-10-28**

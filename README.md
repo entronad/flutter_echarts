@@ -37,6 +37,10 @@
 
 # Features
 
+> **Note**: flutter_echarts is based on WebView and focus on providing complex charts and interactions. It's performance and capability is not perfect. If you need simpler charts, we recommend this pure Flutter visualization lib: [Graphic](https://github.com/entronad/graphic)
+
+
+
 **Reactive Updating**
 
 The most exciting feature of Flutter widgets and React components is that the view can update reactively when data changes. Thanks to ECharts' data driven architecture, `flutter_echarts` implements a reactive way to connect charts with data. The charts automatically re-render when data in the `option` property changes.
@@ -183,6 +187,24 @@ You can [download built-in ECharts themes](https://echarts.apache.org/en/downloa
 *( default: false )*
 
 Setting `captureAllGestures` to `true` is useful when handling 3D rotation and data zoom bars. Note that setting prevents containers like ListViews from reacting to gestures on the charts.
+
+If true, `captureHorizontalGestures` and `captureVerticalGestures` are forced true.
+
+**captureHorizontalGestures**
+
+*bool*
+
+*( default: false )*
+
+Only capture horizontal gestures.
+
+**captureVerticalGestures**
+
+*bool*
+
+*( default: false )*
+
+Only capture vertical gestures.
 
 **onLoad**
 
