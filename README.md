@@ -3,10 +3,9 @@
 <p align="center">
 <img src="https://raw.githubusercontent.com/entronad/flutter_echarts/master/doc/logo.png" />
 </p>
-
 [![pub](https://img.shields.io/pub/v/flutter_echarts.svg)](https://pub.dev/packages/flutter_echarts)
 
-*A Flutter widget to use [Apache ECharts (incubating)](https://github.com/apache/incubator-echarts) in a reactive way.* 
+*A Flutter widget to use [Apache ECharts](https://github.com/apache/incubator-echarts) in a reactive way.* 
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/19553554/52197440-843a5200-289a-11e9-8601-3ce8d945b04a.gif" width="33%" height="33%" alt="bar"/>
@@ -37,7 +36,12 @@
 
 # Features
 
-> **Note**: flutter_echarts focuses on complex charts and interactions. It's implemented by WebView. If you prefer better performance and capability but simpler charts, we recommend this pure Flutter visualization lib: [Graphic](https://github.com/entronad/graphic)
+> **Note**: 
+>
+> - Null safety is supported now.
+> - With Echarts 5 inside.
+> - Since based on webview, only mobile(Android, iOS) is supported.
+> - There May be some unstability with some widgets and Echarts extensions.
 
 
 

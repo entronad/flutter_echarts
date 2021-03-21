@@ -6,7 +6,7 @@
 
 [![pub](https://img.shields.io/pub/v/flutter_echarts.svg)](https://pub.dev/packages/flutter_echarts)
 
-*响应式 [Apache ECharts (incubating)](https://github.com/apache/incubator-echarts) Flutter 组件。* 
+*响应式 [Apache ECharts](https://github.com/apache/incubator-echarts) Flutter 组件。* 
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/19553554/52197440-843a5200-289a-11e9-8601-3ce8d945b04a.gif" width="33%" height="33%" alt="bar"/>
@@ -37,7 +37,12 @@
 
 # 特点
 
-> **提示**：flutter_echarts 主要为提供复杂的图表和交互。它通过 WebView 实现。您对性能和兼容性要求更高，而仅需要简单的图表，推荐纯 Flutter 可视化库：[Graphic](https://github.com/entronad/graphic)
+> **提示**：
+>
+> - 支持空值安全。
+> - 内置 Echarts 5。
+> - 基于 webview，仅支持移动端（Android, iOS）。
+> - 在某些组件中或使用某些 Echarts 扩展时不太稳定。
 
 
 

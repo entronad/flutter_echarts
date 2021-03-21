@@ -18,8 +18,8 @@ const htmlBase64 = 'data:text/html;base64,PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PG
 
 class Echarts extends StatefulWidget {
   Echarts({
-    Key key,
-    @required this.option,
+    Key? key,
+    required this.option,
     this.extraScript = '',
     this.onMessage,
     this.extensions = const [],
@@ -34,11 +34,11 @@ class Echarts extends StatefulWidget {
 
   final String extraScript;
 
-  final void Function(String message) onMessage;
+  final void Function(String message)? onMessage;
 
   final List<String> extensions;
 
-  final String theme;
+  final String? theme;
 
   final bool captureAllGestures;
 
@@ -46,16 +46,16 @@ class Echarts extends StatefulWidget {
 
   final bool captureVerticalGestures;
 
-  final void Function() onLoad;
+  final void Function()? onLoad;
 
   @override
   _EchartsState createState() => _EchartsState();
 }
 
 class _EchartsState extends State<Echarts> {
-  WebViewController _controller;
+  WebViewController? _controller;
 
-  String _currentOption;
+  String? _currentOption;
 
   // --- FIX_BLINK ---
   double _opacity = Platform.isAndroid ? 0.0 : 1.0;
@@ -82,7 +82,7 @@ class _EchartsState extends State<Echarts> {
       chart.setOption($_currentOption, true);
     ''');
     if (widget.onLoad != null) {
-      widget.onLoad();
+      widget.onLoad!();
     }
   }
 
@@ -133,7 +133,7 @@ class _EchartsState extends State<Echarts> {
   @override
   void dispose() {
     if (Platform.isIOS) {
-      _controller.clearCache();
+      _controller?.clearCache();
     }
     super.dispose();
   }
@@ -163,7 +163,9 @@ class _EchartsState extends State<Echarts> {
           JavascriptChannel(
             name: 'Messager',
             onMessageReceived: (JavascriptMessage javascriptMessage) {
-              widget?.onMessage(javascriptMessage.message);
+              if (widget.onMessage != null) {
+                widget.onMessage!(javascriptMessage.message);
+              }
             }
           ),
         ].toSet(),

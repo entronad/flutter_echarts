@@ -1,3 +1,10 @@
+## 2.0.0
+
+**2021-03-21**
+
+- Support Null Safety.
+- Upgrade to Echarts 5.
+
 ## 1.5.0
 
 **2020-12-01**
