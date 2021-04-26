@@ -3,7 +3,12 @@
 <p align="center">
 <img src="https://raw.githubusercontent.com/entronad/flutter_echarts/master/doc/logo.png" />
 </p>
-[![pub](https://img.shields.io/pub/v/flutter_echarts.svg)](https://pub.dev/packages/flutter_echarts)
+
+<p align="left">
+<a href="https://pub.dev/packages/flutter_echarts">
+<img src="https://img.shields.io/pub/v/flutter_echarts.svg" />
+</a>
+</p>
 
 *A Flutter widget to use [Apache ECharts](https://github.com/apache/incubator-echarts) in a reactive way.* 
 
@@ -42,6 +47,7 @@
 > - With Echarts 5 inside.
 > - Since based on webview, only mobile(Android, iOS) is supported.
 > - There May be some unstability with some widgets and Echarts extensions.
+> - If you have trouble in rendering charts in "Movable Widgets"(ListView, SliverView, PageVIew...) on iOS, try setting `reloadAfterInit` to `true` .
 
 
 
@@ -212,9 +218,17 @@ Only capture vertical gestures.
 
 **onLoad**
 
-*void Function()*
+*void Function(WebViewController)*
 
-The callback when first time the chart is loaded and rendered.
+The callback when first time the chart is loaded and rendered. You can get the webview controller from this function to do your magic.
+
+**reloadAfterInit**
+
+*bool*
+
+*( default: false )*
+
+If you have trouble in rendering charts in "Movable Widgets"(ListView, SliverView, PageVIew...) on iOS, try setting `reloadAfterInit` to `true` .
 
 # Blog
 

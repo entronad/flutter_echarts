@@ -1,3 +1,11 @@
+## 2.1.0
+
+**2021-04-26**
+
+- Add `reloadAfterInit` : https://github.com/entronad/flutter_echarts/issues/124.
+- Fix ?? warning : https://github.com/entronad/flutter_echarts/issues/119.
+- Export controller in `onLoad` .
+
 ## 2.0.0
 
 **2021-03-21**

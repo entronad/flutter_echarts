@@ -4,9 +4,13 @@
 <img src="https://raw.githubusercontent.com/entronad/flutter_echarts/master/doc/logo.png" />
 </p>
 
-[![pub](https://img.shields.io/pub/v/flutter_echarts.svg)](https://pub.dev/packages/flutter_echarts)
+<p align="left">
+<a href="https://pub.dev/packages/flutter_echarts">
+<img src="https://img.shields.io/pub/v/flutter_echarts.svg" />
+</a>
+</p>
 
-*响应式 [Apache ECharts](https://github.com/apache/incubator-echarts) Flutter 组件。* 
+*反应式 [Apache ECharts](https://github.com/apache/incubator-echarts) Flutter 组件。* 
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/19553554/52197440-843a5200-289a-11e9-8601-3ce8d945b04a.gif" width="33%" height="33%" alt="bar"/>
@@ -43,12 +47,13 @@
 > - 内置 Echarts 5。
 > - 基于 webview，仅支持移动端（Android, iOS）。
 > - 在某些组件中或使用某些 Echarts 扩展时不太稳定。
+> - 如果在 iOS 的可滑动组件（ListView、SliverView、PageView 等）中遇到渲染问题，请尝试将 `reloadAfterInit` 设为 `true` 。
 
 
 
-**响应式更新**
+**反应式更新**
 
-Flutter 和 React 组件最方便的一点是可以根据数据的变化响应式的更新视图。基于 Echarts 数据驱动式的架构，flutter_echarts 为图表和数据建立了一种响应式的联系。当`option` 参数中的数据变化时，图表可以自动重新渲染。
+Flutter 和 React 组件最方便的一点是可以根据数据的变化反应式的更新视图。基于 Echarts 数据驱动式的架构，flutter_echarts 为图表和数据建立了一种反应式的联系。当`option` 参数中的数据变化时，图表可以自动重新渲染。
 
 **双向通信**
 
@@ -209,9 +214,17 @@ const liquidPlugin = r'''
 
 **onLoad**
 
-*void Function()*
+*void Function(WebViewController)*
 
-图表第一次加载并渲染后的回调。
+图表第一次加载并渲染后的回调。这个函数中可以获取 Webview 的 controller，以便施展黑魔法。
+
+**reloadAfterInit**
+
+*bool*
+
+*( default: false )*
+
+如果在 iOS 的可滑动组件（ListView、SliverView、PageView 等）中遇到渲染问题，请尝试将 `reloadAfterInit` 设为 `true` 。
 
 # 博客
 

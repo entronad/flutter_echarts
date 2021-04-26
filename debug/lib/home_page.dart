@@ -7,9 +7,9 @@ class Package {
     this.version,
   });
 
-  final String name;
-  final String endPoint;
-  final String version;
+  final String? name;
+  final String? endPoint;
+  final String? version;
 }
 
 final packages = <Package>[
@@ -41,21 +41,21 @@ final packages = <Package>[
 ];
 
 class PackageCard extends StatelessWidget {
-  PackageCard({Key key, @required this.package, @required this.onPressed}):super(key: key);
+  PackageCard({Key? key, @required this.package, @required this.onPressed}):super(key: key);
 
-  final Package package;
-  final Function onPressed;
+  final Package? package;
+  final Function? onPressed;
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final TextStyle titleStyle = theme.textTheme.title;
-    final TextStyle descriptionStyle = theme.textTheme.body1;
+    final TextStyle titleStyle = theme.textTheme.headline6!;
+    final TextStyle descriptionStyle = theme.textTheme.bodyText2!;
 
     return Container(
       padding: const EdgeInsets.all(4.0),
       child: GestureDetector(
         onTap: () {
-          this.onPressed(this.package.endPoint);
+          this.onPressed!(this.package!.endPoint);
         },
         child: Card(
           child: DefaultTextStyle(
@@ -69,13 +69,13 @@ class PackageCard extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
-                    child: Text(this.package.name, style: titleStyle,),
+                    child: Text(this.package!.name!, style: titleStyle,),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 4.0),
-                    child: Text('GitHub:  ${this.package.endPoint}'),
+                    child: Text('GitHub:  ${this.package!.endPoint}'),
                   ),
-                  Text('Version:  ${this.package.version}'),
+                  Text('Version:  ${this.package!.version}'),
                 ],
               ),
             ),

@@ -12,7 +12,7 @@ import './gl_script.dart' show glScript;
 final display = createDisplay(decimal: 2);
 
 class ChartPage extends StatefulWidget {
-  ChartPage({Key key}) : super(key: key);
+  ChartPage({Key? key}) : super(key: key);
 
   @override
   _ChartPageState createState() => _ChartPageState();
@@ -213,14 +213,14 @@ class _ChartPageState extends State<ChartPage> {
                   onMessage: (String message) {
                     Map<String, Object> messageAction = jsonDecode(message);
                     print(messageAction);
-                    if (messageAction['type'] == 'select') {
-                      final item = _data1[messageAction['payload']];
-                      _scaffoldKey.currentState.showSnackBar(
-                        SnackBar(
-                          content: Text(item['name'].toString() + ': ' + display(item['value'])),
-                          duration: Duration(seconds: 2),
-                        ));
-                    }
+                    // if (messageAction['type'] == 'select') {
+                    //   final item = _data1[messageAction['payload']];
+                    //   _scaffoldKey.currentState.showSnackBar(
+                    //     SnackBar(
+                    //       content: Text(item['name'].toString() + ': ' + display(item['value'])),
+                    //       duration: Duration(seconds: 2),
+                    //     ));
+                    // }
                   },
                 ),
                 width: 300,

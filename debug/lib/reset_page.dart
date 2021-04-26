@@ -1,19 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 
 import 'package:flutter_echarts/flutter_echarts.dart';
-import 'package:number_display/number_display.dart';
 
 import './liquid_script.dart' show liquidScript;
 import './gl_script.dart' show glScript;
 
-final display = createDisplay(decimal: 2);
-
 class RestPage extends StatefulWidget {
-  RestPage({Key key}) : super(key: key);
+  RestPage({Key? key}) : super(key: key);
 
   @override
   _RestPageState createState() => _RestPageState();
@@ -45,7 +41,7 @@ class _RestPageState extends State<RestPage> {
       'value': 8926.9823,
     }];
   
-  Timer p;
+  Timer? p;
 
   getData1() {
      p = Timer.periodic(
@@ -91,7 +87,7 @@ class _RestPageState extends State<RestPage> {
   @override
   void dispose() {
     super.dispose();
-    p.cancel();
+    p?.cancel();
   }
 
   @override
@@ -227,14 +223,14 @@ class _RestPageState extends State<RestPage> {
                   onMessage: (String message) {
                     Map<String, Object> messageAction = jsonDecode(message);
                     print(messageAction);
-                    if (messageAction['type'] == 'select') {
-                      final item = _data1[messageAction['payload']];
-                      _scaffoldKey.currentState.showSnackBar(
-                        SnackBar(
-                          content: Text(item['name'].toString() + ': ' + display(item['value'])),
-                          duration: Duration(seconds: 2),
-                        ));
-                    }
+                    // if (messageAction['type'] == 'select') {
+                    //   final item = _data1[messageAction['payload']];
+                    //   _scaffoldKey.currentState.showSnackBar(
+                    //     SnackBar(
+                    //       content: Text(item['name'].toString() + ': ' + display(item['value'])),
+                    //       duration: Duration(seconds: 2),
+                    //     ));
+                    // }
                   },
                 ),
                 width: 300,

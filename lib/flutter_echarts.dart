@@ -47,7 +47,7 @@ class Echarts extends StatefulWidget {
 
   final bool captureVerticalGestures;
 
-  final void Function()? onLoad;
+  final void Function(WebViewController)? onLoad;
 
   final bool reloadAfterInit;
 
@@ -71,7 +71,7 @@ class _EchartsState extends State<Echarts> {
 
     if (widget.reloadAfterInit) {
       new Future.delayed(const Duration(milliseconds: 100), () {
-        _controller.reload();
+        _controller?.reload();
       });
     }
   }
@@ -79,7 +79,7 @@ class _EchartsState extends State<Echarts> {
   void init() async {
     final extensionsStr = this.widget.extensions.length > 0
     ? this.widget.extensions.reduce(
-        (value, element) => (value ?? '') + '\n' + (element ?? '')
+        (value, element) => value + '\n' + element
       )
     : '';
     final themeStr = this.widget.theme != null ? '\'${this.widget.theme}\'' : 'null';
@@ -91,7 +91,7 @@ class _EchartsState extends State<Echarts> {
       chart.setOption($_currentOption, true);
     ''');
     if (widget.onLoad != null) {
-      widget.onLoad!();
+      widget.onLoad!(_controller!);
     }
   }
 
