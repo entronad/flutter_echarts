@@ -28,6 +28,7 @@ class Echarts extends StatefulWidget {
     this.captureHorizontalGestures = false,
     this.captureVerticalGestures = false,
     this.onLoad,
+    this.reloadAfterInit = false
   }) : super(key: key);
 
   final String option;
@@ -48,6 +49,8 @@ class Echarts extends StatefulWidget {
 
   final void Function()? onLoad;
 
+  final bool reloadAfterInit;
+
   @override
   _EchartsState createState() => _EchartsState();
 }
@@ -65,6 +68,12 @@ class _EchartsState extends State<Echarts> {
   void initState() {
     super.initState();
     _currentOption = widget.option;
+
+    if (widget.reloadAfterInit) {
+      new Future.delayed(const Duration(milliseconds: 100), () {
+        _controller.reload();
+      });
+    }
   }
 
   void init() async {
