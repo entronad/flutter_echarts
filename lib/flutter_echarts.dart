@@ -28,6 +28,7 @@ class Echarts extends StatefulWidget {
     this.captureHorizontalGestures = false,
     this.captureVerticalGestures = false,
     this.onLoad,
+    this.onWebResourceError,
     this.reloadAfterInit = false
   }) : super(key: key);
 
@@ -48,6 +49,8 @@ class Echarts extends StatefulWidget {
   final bool captureVerticalGestures;
 
   final void Function(WebViewController)? onLoad;
+
+  final void Function(WebViewController)? onWebResourceError;
 
   final bool reloadAfterInit;
 
@@ -167,6 +170,11 @@ class _EchartsState extends State<Echarts> {
           }
           // --- FIX_BLINK ---
           init();
+        },
+        onWebResourceError: (_) {
+          if (widget.onWebResourceError != null) {
+            widget.onWebResourceError!(_controller!);
+          }
         },
         javascriptChannels: <JavascriptChannel>[
           JavascriptChannel(
