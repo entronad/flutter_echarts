@@ -166,7 +166,7 @@ extraScript: '''
 
 **onMessage**
 
-*void Function(String)*
+*void Function(String)?*
 
 Function to handle the message sent by `Messager.postMessage()` in `extraScript` .
 
@@ -218,7 +218,7 @@ Only capture vertical gestures.
 
 **onLoad**
 
-*void Function(WebViewController)*
+*void Function(WebViewController)?*
 
 The callback when first time the chart is loaded and rendered. You can get the webview controller from this function to do your magic.
 
@@ -229,6 +229,12 @@ The callback when first time the chart is loaded and rendered. You can get the w
 *( default: false )*
 
 If you have trouble in rendering charts in "Movable Widgets"(ListView, SliverView, PageVIew...) on iOS, try setting `reloadAfterInit` to `true` .
+
+**onWebResourceError**
+
+*void Function(WebViewController, Exception)?*
+
+Handle the web resource error.
 
 # Blog
 

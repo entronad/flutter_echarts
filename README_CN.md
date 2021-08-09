@@ -162,7 +162,7 @@ extraScript: '''
 
 **onMessage**
 
-*void Function(String)*
+*void Function(String)?*
 
 处理 `extraScript` 中  `Messager.postMessage()` 发送的消息的函数。
 
@@ -214,7 +214,7 @@ const liquidPlugin = r'''
 
 **onLoad**
 
-*void Function(WebViewController)*
+*void Function(WebViewController)?*
 
 图表第一次加载并渲染后的回调。这个函数中可以获取 Webview 的 controller，以便施展黑魔法。
 
@@ -225,6 +225,12 @@ const liquidPlugin = r'''
 *( default: false )*
 
 如果在 iOS 的可滑动组件（ListView、SliverView、PageView 等）中遇到渲染问题，请尝试将 `reloadAfterInit` 设为 `true` 。
+
+**onWebResourceError**
+
+*void Function(WebViewController, Exception)?*
+
+处理加载 Web 资源时的异常.
 
 # 博客
 
