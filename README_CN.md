@@ -39,17 +39,14 @@
 <img src="https://user-images.githubusercontent.com/19553554/52349544-c2ce3900-2a61-11e9-82af-28aaaaae0d67.gif" width="33%" height="33%" alt="overlap"/>
 </div>
 
+
+**注意：**
+
+*由于本库基于 webview，因此存在一些固有的不稳定和性能问题。我们推荐 Flutter 图表库 [Graphic](https://github.com/entronad/graphic) 作为替代。*
+
+
+
 # 特点
-
-> **提示**：
->
-> - 支持空值安全。
-> - 内置 Echarts 5。
-> - 基于 webview，仅支持移动端（Android, iOS）。
-> - 在某些组件中或使用某些 Echarts 扩展时不太稳定。
-> - 如果在 iOS 的可滑动组件（ListView、SliverView、PageView 等）中遇到渲染问题，请尝试将 `reloadAfterInit` 设为 `true` 。
-
-
 
 **反应式更新**
 

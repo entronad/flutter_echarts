@@ -39,17 +39,14 @@
 <img src="https://user-images.githubusercontent.com/19553554/52349544-c2ce3900-2a61-11e9-82af-28aaaaae0d67.gif" width="33%" height="33%" alt="overlap"/>
 </div>
 
+
+**Note:**
+
+*Since based on webview, this library has some inextirpable unstability and performance issues. We recommand the Flutter charting library [Graphic](https://github.com/entronad/graphic) as alternative.*
+
+
+
 # Features
-
-> **Note**: 
->
-> - Null safety is supported now.
-> - With Echarts 5 inside.
-> - Since based on webview, only mobile(Android, iOS) is supported.
-> - There May be some unstability with some widgets and Echarts extensions.
-> - If you have trouble in rendering charts in "Movable Widgets"(ListView, SliverView, PageVIew...) on iOS, try setting `reloadAfterInit` to `true` .
-
-
 
 **Reactive Updating**
 
