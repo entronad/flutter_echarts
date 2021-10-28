@@ -42,7 +42,7 @@
 
 **Note:**
 
-*Since based on webview, this library has some inextirpable unstability and performance issues. We recommand the Flutter charting library [Graphic](https://github.com/entronad/graphic) as alternative.*
+*Since it is based on webview, this library has some inextricable instability and performance issues. We recommend the Flutter charting library [Graphic](https://github.com/entronad/graphic) as an alternative.*
 
 
 
