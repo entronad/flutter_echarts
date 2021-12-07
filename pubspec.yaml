@@ -1,6 +1,6 @@
 name: flutter_echarts
 description: A data visualization charts library, based on Apache ECharts, able to build advanced charts like WebGL 3D, GIS map, etc.
-version: 2.3.0
+version: 3.0.0
 homepage: https://github.com/entronad/flutter_echarts
 
 environment:
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter: ^2.0.2
+  webviewx: ^0.2.1
 
 dev_dependencies:
   flutter_test:

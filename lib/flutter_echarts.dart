@@ -8,18 +8,44 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webviewx/webviewx.dart';
 
 import 'echarts_script.dart' show echartsScript;
 
-/// <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, target-densitydpi=device-dpi" /><style type="text/css">body,html,#chart{height: 100%;width: 100%;margin: 0px;}div {-webkit-tap-highlight-color:rgba(255,255,255,0);}</style></head><body><div id="chart" /></body></html>
-/// 'data:text/html;base64,' + base64Encode(const Utf8Encoder().convert( /* STRING ABOVE */ ))
-const htmlBase64 = 'data:text/html;base64,PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PG1ldGEgY2hhcnNldD0idXRmLTgiPjxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250ZW50PSJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MS4wLCBtYXhpbXVtLXNjYWxlPTEuMCwgbWluaW11bS1zY2FsZT0xLjAsIHVzZXItc2NhbGFibGU9MCwgdGFyZ2V0LWRlbnNpdHlkcGk9ZGV2aWNlLWRwaSIgLz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPmJvZHksaHRtbCwjY2hhcnR7aGVpZ2h0OiAxMDAlO3dpZHRoOiAxMDAlO21hcmdpbjogMHB4O31kaXYgey13ZWJraXQtdGFwLWhpZ2hsaWdodC1jb2xvcjpyZ2JhKDI1NSwyNTUsMjU1LDApO308L3N0eWxlPjwvaGVhZD48Ym9keT48ZGl2IGlkPSJjaGFydCIgLz48L2JvZHk+PC9odG1sPg==';
+// <script type="text/javascript" charset="utf-8" src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+String get html => '''
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, target-densitydpi=device-dpi" />
+        <style type="text/css">
+            body,
+            html,
+            #chart {
+                height: 100%;
+                width: 100%;
+                margin: 0px;
+                // background: red;
+            }
+            div {
+                -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="chart" />
+    </body>
+</html>
+''';
+// final htmlBase64 = 'data:text/html;base64,${base64Encode(html.codeUnits)}';
 
 class Echarts extends StatefulWidget {
   Echarts({
     Key? key,
     required this.option,
+    this.height,
+    this.width,
     this.extraScript = '',
     this.onMessage,
     this.extensions = const [],
@@ -31,6 +57,9 @@ class Echarts extends StatefulWidget {
     this.onWebResourceError,
     this.reloadAfterInit = false
   }) : super(key: key);
+
+  final double? height;
+  final double? width;
 
   final String option;
 
@@ -48,9 +77,9 @@ class Echarts extends StatefulWidget {
 
   final bool captureVerticalGestures;
 
-  final void Function(WebViewController)? onLoad;
+  final void Function(WebViewXController)? onLoad;
 
-  final void Function(WebViewController, Exception)? onWebResourceError;
+  final void Function(WebViewXController, Exception)? onWebResourceError;
 
   final bool reloadAfterInit;
 
@@ -59,12 +88,15 @@ class Echarts extends StatefulWidget {
 }
 
 class _EchartsState extends State<Echarts> {
-  WebViewController? _controller;
+  WebViewXController? _controller;
 
   String? _currentOption;
 
+  // fix white screen of mobile.
+  bool _fixWhiteScreen = !kIsWeb;
+
   // --- FIX_BLINK ---
-  double _opacity = Platform.isAndroid ? 0.0 : 1.0;
+  double _opacity = !kIsWeb && Platform.isAndroid ? 0.01 : 1.0;
   // --- FIX_BLINK ---
 
   @override
@@ -80,13 +112,18 @@ class _EchartsState extends State<Echarts> {
   }
 
   void init() async {
+    if (_fixWhiteScreen) {
+      setState(() => _fixWhiteScreen = false);
+      return;
+    }
+
     final extensionsStr = this.widget.extensions.length > 0
     ? this.widget.extensions.reduce(
         (value, element) => value + '\n' + element
       )
     : '';
     final themeStr = this.widget.theme != null ? '\'${this.widget.theme}\'' : 'null';
-    await _controller?.evaluateJavascript('''
+    await _controller?.evalRawJavascript('''
       $echartsScript
       $extensionsStr
       var chart = echarts.init(document.getElementById('chart'), $themeStr);
@@ -96,6 +133,12 @@ class _EchartsState extends State<Echarts> {
     if (widget.onLoad != null) {
       widget.onLoad!(_controller!);
     }
+
+    // --- FIX_BLINK ---
+    if (_opacity < 1.0) {
+      setState(() { _opacity = 1.0; });
+    }
+    // --- FIX_BLINK ---
   }
 
   Set<Factory<OneSequenceGestureRecognizer>> getGestureRecognizers() {
@@ -126,7 +169,7 @@ class _EchartsState extends State<Echarts> {
   void update(String preOption) async {
     _currentOption = widget.option;
     if (_currentOption != preOption) {
-      await _controller?.evaluateJavascript('''
+      await _controller?.evalRawJavascript('''
         try {
           chart.setOption($_currentOption, true);
         } catch(e) {
@@ -141,15 +184,21 @@ class _EchartsState extends State<Echarts> {
     update(oldWidget.option);
   }
 
-  // --- FIX_IOS_LEAK ---
   @override
   void dispose() {
-    if (Platform.isIOS) {
-      _controller?.clearCache();
-    }
+    disposeController();
     super.dispose();
   }
-  // --- FIX_IOS_LEAK ---
+
+  void disposeController() {
+    // --- FIX_IOS_LEAK ---
+    if (!kIsWeb && Platform.isIOS) {
+      _controller?.clearCache();
+    }
+    // --- FIX_IOS_LEAK ---
+
+    _controller?.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -157,18 +206,19 @@ class _EchartsState extends State<Echarts> {
     return Opacity(
       opacity: _opacity,
     // --- FIX_BLINK ---
-      child: WebView(
-        initialUrl: htmlBase64,
+      child: WebViewX(
+        // fix white screen for mobile.
+        key: kIsWeb ? null : ValueKey(_fixWhiteScreen),
+
+        initialContent: html,
+        initialSourceType: SourceType.html,
         javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (WebViewController webViewController) {
+        onWebViewCreated: (WebViewXController webViewController) {
+          // dispose old when key changed.
+          disposeController();
           _controller = webViewController;
         },
         onPageFinished: (String url) {
-          // --- FIX_BLINK ---
-          if (Platform.isAndroid) {
-            setState(() { _opacity = 1.0; });
-          }
-          // --- FIX_BLINK ---
           init();
         },
         onWebResourceError: (e) {
@@ -176,17 +226,20 @@ class _EchartsState extends State<Echarts> {
             widget.onWebResourceError!(_controller!, Exception(e));
           }
         },
-        javascriptChannels: <JavascriptChannel>[
-          JavascriptChannel(
+        dartCallBacks: <DartCallback>[
+          DartCallback(
             name: 'Messager',
-            onMessageReceived: (JavascriptMessage javascriptMessage) {
+            callBack: (dynamic javascriptMessage) {
               if (widget.onMessage != null) {
-                widget.onMessage!(javascriptMessage.message);
+                widget.onMessage!(javascriptMessage is String ? javascriptMessage : "$javascriptMessage");
               }
             }
           ),
         ].toSet(),
-        gestureRecognizers: getGestureRecognizers()
+        mobileSpecificParams: MobileSpecificParams(mobileGestureRecognizers: getGestureRecognizers()),
+
+        width: widget.width ?? double.maxFinite,
+        height: widget.height ?? double.maxFinite,
       )
     );
   }
