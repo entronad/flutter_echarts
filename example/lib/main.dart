@@ -81,7 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('Echarts Demon'),
       ),
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Center(
           child: Column(

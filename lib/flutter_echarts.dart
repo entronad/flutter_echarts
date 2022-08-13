@@ -1,9 +1,5 @@
 library flutter_echarts;
 
-// --- FIX_BLINK ---
-import 'dart:io' show Platform;
-// --- FIX_BLINK ---
-
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/foundation.dart';
@@ -63,10 +59,6 @@ class _EchartsState extends State<Echarts> {
 
   String? _currentOption;
 
-  // --- FIX_BLINK ---
-  double _opacity = Platform.isAndroid ? 0.0 : 1.0;
-  // --- FIX_BLINK ---
-
   @override
   void initState() {
     super.initState();
@@ -86,7 +78,7 @@ class _EchartsState extends State<Echarts> {
       )
     : '';
     final themeStr = this.widget.theme != null ? '\'${this.widget.theme}\'' : 'null';
-    await _controller?.evaluateJavascript('''
+    await _controller?.runJavascript('''
       $echartsScript
       $extensionsStr
       var chart = echarts.init(document.getElementById('chart'), $themeStr);
@@ -126,7 +118,7 @@ class _EchartsState extends State<Echarts> {
   void update(String preOption) async {
     _currentOption = widget.option;
     if (_currentOption != preOption) {
-      await _controller?.evaluateJavascript('''
+      await _controller?.runJavascript('''
         try {
           chart.setOption($_currentOption, true);
         } catch(e) {
@@ -141,53 +133,40 @@ class _EchartsState extends State<Echarts> {
     update(oldWidget.option);
   }
 
-  // --- FIX_IOS_LEAK ---
   @override
   void dispose() {
-    if (Platform.isIOS) {
-      _controller?.clearCache();
-    }
+    _controller?.clearCache();
     super.dispose();
   }
-  // --- FIX_IOS_LEAK ---
 
   @override
   Widget build(BuildContext context) {
-    // --- FIX_BLINK ---
-    return Opacity(
-      opacity: _opacity,
-    // --- FIX_BLINK ---
-      child: WebView(
-        initialUrl: htmlBase64,
-        javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (WebViewController webViewController) {
-          _controller = webViewController;
-        },
-        onPageFinished: (String url) {
-          // --- FIX_BLINK ---
-          if (Platform.isAndroid) {
-            setState(() { _opacity = 1.0; });
-          }
-          // --- FIX_BLINK ---
-          init();
-        },
-        onWebResourceError: (e) {
-          if (widget.onWebResourceError != null) {
-            widget.onWebResourceError!(_controller!, Exception(e));
-          }
-        },
-        javascriptChannels: <JavascriptChannel>[
-          JavascriptChannel(
-            name: 'Messager',
-            onMessageReceived: (JavascriptMessage javascriptMessage) {
-              if (widget.onMessage != null) {
-                widget.onMessage!(javascriptMessage.message);
-              }
+    return WebView(
+      backgroundColor: Color(0x00000000),
+      initialUrl: htmlBase64,
+      javascriptMode: JavascriptMode.unrestricted,
+      onWebViewCreated: (WebViewController webViewController) {
+        _controller = webViewController;
+      },
+      onPageFinished: (String url) {
+        init();
+      },
+      onWebResourceError: (e) {
+        if (widget.onWebResourceError != null) {
+          widget.onWebResourceError!(_controller!, Exception(e));
+        }
+      },
+      javascriptChannels: <JavascriptChannel>[
+        JavascriptChannel(
+          name: 'Messager',
+          onMessageReceived: (JavascriptMessage javascriptMessage) {
+            if (widget.onMessage != null) {
+              widget.onMessage!(javascriptMessage.message);
             }
-          ),
-        ].toSet(),
-        gestureRecognizers: getGestureRecognizers()
-      )
+          }
+        ),
+      ].toSet(),
+      gestureRecognizers: getGestureRecognizers()
     );
   }
 }

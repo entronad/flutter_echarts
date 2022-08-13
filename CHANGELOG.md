@@ -1,3 +1,11 @@
+## 2.4.0
+
+**2022-08-13**
+
+- Upgrade webview_flutter to 3.0.4
+- Upgrade Echarts to 5.3.3
+- Set chart widget's background color to transparent, and remove workarounds.
+
 ## 2.3.0
 
 **2021-10-27**
