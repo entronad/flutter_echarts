@@ -1,3 +1,11 @@
+## 2.5.0
+
+**2023-08-31**
+
+- Upgrade webview_flutter to 4.2.4
+- Upgrade Echarts to 5.4.3
+- Upgrade SDK to >=2.12.0 <4.0.0
+
 ## 2.4.0
 
 **2022-08-13**
