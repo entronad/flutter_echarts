@@ -1,3 +1,11 @@
+
+
+## Archiving Note
+
+**After many years, this project, as a transitional solution using Webview, has completed its historical mission and is therefore being archived. We recommend [Graphic](https://github.com/entronad/graphic) or other native chart libraries as alternatives.**
+
+
+
 [中文](https://github.com/entronad/flutter_echarts/blob/master/README_CN.md) 
 
 <p align="center">
@@ -9,16 +17,7 @@
 <img src="https://img.shields.io/pub/v/flutter_echarts.svg" />
 </a>
 </p>
-
 *A Flutter widget to use [Apache ECharts](https://github.com/apache/incubator-echarts) in a reactive way.* 
-
-
-
-**Note:**
-
-*Since it is based on webview, this library has some inextricable instability and performance issues. We recommend the Flutter charting library [Graphic](https://github.com/entronad/graphic) as an alternative.*
-
-
 
 # Features
 

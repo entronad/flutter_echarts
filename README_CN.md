@@ -1,3 +1,9 @@
+## 归档通知
+
+**历经多年后，这个项目作为使用 Webview 的过渡方案，已经完成了它的历史使命，因此将其归档。我们推荐 [Graphic](https://github.com/entronad/graphic) 或其他的原生图表库作为替代。**
+
+
+
 [English](https://github.com/entronad/flutter_echarts/blob/master/README.md) 
 
 <p align="center">
@@ -9,16 +15,7 @@
 <img src="https://img.shields.io/pub/v/flutter_echarts.svg" />
 </a>
 </p>
-
 *反应式 [Apache ECharts](https://github.com/apache/incubator-echarts) Flutter 组件。* 
-
-
-
-**注意：**
-
-*由于本库基于 webview，因此存在一些固有的不稳定和性能问题。我们推荐 Flutter 图表库 [Graphic](https://github.com/entronad/graphic) 作为替代。*
-
-
 
 # 特点
 
